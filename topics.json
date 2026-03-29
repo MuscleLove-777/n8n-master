@@ -1,0 +1,57 @@
+{
+  "n8n 使い方": [
+    {"keyword": "n8n 始め方 2026 完全ガイド", "priority": "high", "status": "pending"},
+    {"keyword": "n8n Docker インストール方法", "priority": "high", "status": "pending"},
+    {"keyword": "n8n 初心者 チュートリアル", "priority": "high", "status": "pending"},
+    {"keyword": "n8n ノード 基本操作", "priority": "medium", "status": "pending"},
+    {"keyword": "n8n Webhook 設定方法", "priority": "medium", "status": "pending"}
+  ],
+  "n8n 料金・プラン": [
+    {"keyword": "n8n Cloud 料金プラン 2026", "priority": "high", "status": "pending"},
+    {"keyword": "n8n 無料 セルフホスト 始め方", "priority": "high", "status": "pending"},
+    {"keyword": "n8n Enterprise プラン 機能比較", "priority": "medium", "status": "pending"},
+    {"keyword": "n8n 商用利用 ライセンス", "priority": "medium", "status": "pending"}
+  ],
+  "n8n ワークフロー": [
+    {"keyword": "n8n ワークフロー構築入門", "priority": "high", "status": "pending"},
+    {"keyword": "n8n 条件分岐 IF ノード使い方", "priority": "high", "status": "pending"},
+    {"keyword": "n8n エラーハンドリング 実践", "priority": "medium", "status": "pending"},
+    {"keyword": "n8n テンプレート おすすめ 10選", "priority": "medium", "status": "pending"},
+    {"keyword": "n8n サブワークフロー 使い方", "priority": "medium", "status": "pending"}
+  ],
+  "n8n 最新ニュース": [
+    {"keyword": "n8n GitHub 15万スター 人気の理由", "priority": "high", "status": "pending"},
+    {"keyword": "n8n 最新アップデート 2026", "priority": "high", "status": "pending"},
+    {"keyword": "n8n コミュニティ 活用法", "priority": "medium", "status": "pending"},
+    {"keyword": "n8n ロードマップ 新機能予定", "priority": "medium", "status": "pending"}
+  ],
+  "n8n × AIエージェント": [
+    {"keyword": "n8n AIエージェント アクション層 構築", "priority": "high", "status": "pending"},
+    {"keyword": "n8n LangChain 連携 ワークフロー", "priority": "high", "status": "pending"},
+    {"keyword": "n8n OpenAI API 連携方法", "priority": "high", "status": "pending"},
+    {"keyword": "n8n RAG パイプライン 構築", "priority": "medium", "status": "pending"},
+    {"keyword": "n8n ベクトルDB Pinecone 連携", "priority": "medium", "status": "pending"},
+    {"keyword": "n8n AI チャットボット 作り方", "priority": "medium", "status": "pending"}
+  ],
+  "n8n テクニック": [
+    {"keyword": "n8n 変数 式エディタ 使い方", "priority": "high", "status": "pending"},
+    {"keyword": "n8n API連携 REST HTTP Request", "priority": "high", "status": "pending"},
+    {"keyword": "n8n データベース連携 PostgreSQL", "priority": "medium", "status": "pending"},
+    {"keyword": "n8n Cron トリガー スケジュール実行", "priority": "medium", "status": "pending"},
+    {"keyword": "n8n 認証情報 セキュリティ設定", "priority": "medium", "status": "pending"}
+  ],
+  "自動化ツール比較": [
+    {"keyword": "n8n Zapier 比較 2026年版", "priority": "high", "status": "pending"},
+    {"keyword": "n8n Make Integromat 比較", "priority": "high", "status": "pending"},
+    {"keyword": "n8n Power Automate 比較", "priority": "medium", "status": "pending"},
+    {"keyword": "自動化ツール おすすめ ランキング 2026", "priority": "medium", "status": "pending"},
+    {"keyword": "n8n オープンソース 自動化 メリット", "priority": "medium", "status": "pending"}
+  ],
+  "n8n 活用事例": [
+    {"keyword": "n8n SNS 自動投稿 ワークフロー", "priority": "high", "status": "pending"},
+    {"keyword": "n8n マーケティング自動化 事例", "priority": "high", "status": "pending"},
+    {"keyword": "n8n Slack 通知 自動化", "priority": "medium", "status": "pending"},
+    {"keyword": "n8n Google Sheets 自動連携", "priority": "medium", "status": "pending"},
+    {"keyword": "n8n メール自動送信 Gmail連携", "priority": "medium", "status": "pending"}
+  ]
+}
