@@ -9,7 +9,7 @@
     <title>n8n 使い方 の記事一覧 | n8n AI自動化マスター</title>
 
     
-    <meta name="description" content="n8n AI自動化マスター の「n8n 使い方」カテゴリに属する記事一覧（3件）">
+    <meta name="description" content="n8n AI自動化マスター の「n8n 使い方」カテゴリに属する記事一覧（4件）">
     <meta name="author" content="n8n AI自動化マスター">
     <link rel="canonical" href="https://musclelove-777.github.io/n8n-master/category/n8n 使い方.html">
 
@@ -525,6 +525,108 @@
         .mb-3 { margin-bottom: 1.5rem; }
         .empty-state { text-align: center; padding: 4rem 1rem; color: var(--text-muted); }
         .empty-state p { font-size: 1.1rem; }
+
+        /* =============================================
+           ヒーロー画像（CSS生成・コスト0）
+           ============================================= */
+        .article-hero {
+            position: relative;
+            aspect-ratio: 21 / 9;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        .article-hero-emoji {
+            font-size: clamp(4rem, 8vw, 8rem);
+            z-index: 2;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+            animation: hero-float 3s ease-in-out infinite;
+        }
+        @keyframes hero-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .article-hero-pattern {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 40%),
+                radial-gradient(circle at 60% 80%, rgba(255,255,255,0.06) 0%, transparent 40%);
+            z-index: 1;
+        }
+
+        /* セクション見出しの絵文字装飾 */
+        .article-body h2 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* 強調ボックス（blockquote内の💡⚠️✅） */
+        .article-body blockquote {
+            position: relative;
+            padding: 1rem 1.5rem;
+            margin: 1.5em 0;
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+        }
+        .article-body blockquote p { margin-bottom: 0.3em; }
+        .article-body blockquote p:last-child { margin-bottom: 0; }
+
+        /* インデックスカードのサムネイルにも絵文字 */
+        .card-thumb-emoji {
+            font-size: 3rem;
+            z-index: 2;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.2));
+        }
+
+        /* テーブル装飾強化 */
+        .article-body table {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .article-body th {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            color: #fff;
+            font-weight: 600;
+        }
+        .article-body tr:nth-child(even) td {
+            background: var(--code-bg);
+        }
+
+        /* 番号付きリスト装飾 */
+        .article-body ol {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+        .article-body ol > li {
+            counter-increment: step-counter;
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1rem;
+        }
+        .article-body ol > li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            background: var(--color-accent);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body>
@@ -570,7 +672,7 @@
                 <span class="category-badge" style="font-size:0.9rem;">n8n 使い方</span>
                 <span>の記事一覧</span>
             </h1>
-            <p class="text-muted mt-1">3 件の記事</p>
+            <p class="text-muted mt-1">4 件の記事</p>
         </header>
 
         
@@ -612,6 +714,19 @@
                     </div>
                     
                     <div class="card-tags"><span class="tag">n8n</span><span class="tag">自動化</span><span class="tag">AI連携</span></div>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div class="card-thumb"><span class="card-thumb-text">n8n 使い方</span></div>
+                <div class="card-body">
+                    <h2 class="card-title"><a href="https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-guide-2026-ai.html">2026年最新版 n8n 使い方ガイド！AI自動化マスターへ</a></h2>
+                    <div class="card-meta">
+                        <span>2026-03-30</span>
+                        <span class="reading-time">3分で読める</span>
+                    </div>
+                    
+                    <div class="card-tags"><span class="tag">n8n</span><span class="tag">使い方</span><span class="tag">自動化</span></div>
                 </div>
             </article>
             

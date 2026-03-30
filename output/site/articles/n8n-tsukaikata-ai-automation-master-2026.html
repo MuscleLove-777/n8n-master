@@ -530,6 +530,108 @@
         .mb-3 { margin-bottom: 1.5rem; }
         .empty-state { text-align: center; padding: 4rem 1rem; color: var(--text-muted); }
         .empty-state p { font-size: 1.1rem; }
+
+        /* =============================================
+           ヒーロー画像（CSS生成・コスト0）
+           ============================================= */
+        .article-hero {
+            position: relative;
+            aspect-ratio: 21 / 9;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        .article-hero-emoji {
+            font-size: clamp(4rem, 8vw, 8rem);
+            z-index: 2;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+            animation: hero-float 3s ease-in-out infinite;
+        }
+        @keyframes hero-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .article-hero-pattern {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 40%),
+                radial-gradient(circle at 60% 80%, rgba(255,255,255,0.06) 0%, transparent 40%);
+            z-index: 1;
+        }
+
+        /* セクション見出しの絵文字装飾 */
+        .article-body h2 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* 強調ボックス（blockquote内の💡⚠️✅） */
+        .article-body blockquote {
+            position: relative;
+            padding: 1rem 1.5rem;
+            margin: 1.5em 0;
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+        }
+        .article-body blockquote p { margin-bottom: 0.3em; }
+        .article-body blockquote p:last-child { margin-bottom: 0; }
+
+        /* インデックスカードのサムネイルにも絵文字 */
+        .card-thumb-emoji {
+            font-size: 3rem;
+            z-index: 2;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.2));
+        }
+
+        /* テーブル装飾強化 */
+        .article-body table {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .article-body th {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            color: #fff;
+            font-weight: 600;
+        }
+        .article-body tr:nth-child(even) td {
+            background: var(--code-bg);
+        }
+
+        /* 番号付きリスト装飾 */
+        .article-body ol {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+        .article-body ol > li {
+            counter-increment: step-counter;
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1rem;
+        }
+        .article-body ol > li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2rem;
+            height: 2rem;
+            background: var(--color-accent);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body>
@@ -575,6 +677,12 @@
         </nav>
 
         <article>
+            
+            <div class="article-hero" style="background: linear-gradient(135deg, var(--color-primary), var(--color-accent));">
+                <span class="article-hero-emoji">📝</span>
+                <div class="article-hero-pattern"></div>
+            </div>
+
             <header class="article-header">
                 <h1 class="article-title">n8n 使い方 2026年最新版！AI連携で自動化マスターへ</h1>
                 <div class="article-meta">
