@@ -2,12 +2,8 @@ name: n8n AI自動化マスター 自動記事生成
 
 on:
   schedule:
-    # 毎日 JST 7:00 (UTC 22:00 前日)
-    - cron: '0 22 * * *'
     # 毎日 JST 12:00 (UTC 3:00)
     - cron: '0 3 * * *'
-    # 毎日 JST 19:00 (UTC 10:00)
-    - cron: '0 10 * * *'
   workflow_dispatch:
 
 permissions:
