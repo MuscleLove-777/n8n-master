@@ -7,7 +7,9 @@ JSON-LD構造化データ（BlogPosting / FAQPage / BreadcrumbList）対応。
 import sys
 import os
 import json
+import re
 import logging
+import time
 from datetime import datetime
 from pathlib import Path
 
@@ -50,23 +52,51 @@ def run(config, prompts=None):
                 '{"category": "カテゴリ名", "keyword": "キーワード"}'
             )
 
-        response = client.models.generate_content(
-            model=config.GEMINI_MODEL, contents=prompt
+        from google.genai import types
+        keyword_config = types.GenerateContentConfig(
+            response_mime_type="application/json",
         )
-        response_text = response.text.strip()
 
-        if "```" in response_text:
-            response_text = response_text.split("```")[1]
-            if response_text.startswith("json"):
-                response_text = response_text[4:]
-            response_text = response_text.strip()
+        max_keyword_retries = 5
+        data = None
+        for attempt in range(1, max_keyword_retries + 1):
+            try:
+                response = client.models.generate_content(
+                    model=config.GEMINI_MODEL, contents=prompt, config=keyword_config
+                )
+                response_text = response.text.strip()
 
-        data = json.loads(response_text)
-        # Geminiがリストで返す場合があるので先頭要素を取得
-        if isinstance(data, list):
-            data = data[0]
-        category = data["category"]
-        keyword = data["keyword"]
+                if "```" in response_text:
+                    response_text = response_text.split("```")[1]
+                    if response_text.startswith("json"):
+                        response_text = response_text[4:]
+                    response_text = response_text.strip()
+
+                # JSONオブジェクト部分を抽出
+                start = response_text.find("{")
+                end = response_text.rfind("}") + 1
+                if start >= 0 and end > start:
+                    response_text = response_text[start:end]
+
+                data = json.loads(response_text)
+                # Geminiがリストで返す場合があるので先頭要素を取得
+                if isinstance(data, list):
+                    data = data[0]
+                break
+            except (json.JSONDecodeError, Exception) as parse_err:
+                logger.warning(
+                    "キーワード選定JSONパース失敗（試行%d/%d）: %s",
+                    attempt, max_keyword_retries, parse_err,
+                )
+                if attempt < max_keyword_retries:
+                    time.sleep(2 * attempt)
+                else:
+                    raise
+
+        # デフォルト値でフォールバック
+        import random
+        category = data.get("category", random.choice(config.TARGET_CATEGORIES))
+        keyword = data.get("keyword", category)
         logger.info("選定結果 - カテゴリ: %s, キーワード: %s", category, keyword)
 
     except Exception as e:
