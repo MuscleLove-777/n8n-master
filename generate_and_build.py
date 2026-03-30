@@ -72,10 +72,19 @@ def run(config, prompts=None):
                         response_text = response_text[4:]
                     response_text = response_text.strip()
 
-                # JSONオブジェクト部分を抽出
+                # 最初のJSONオブジェクトだけを抽出（Extra data対策）
                 start = response_text.find("{")
-                end = response_text.rfind("}") + 1
-                if start >= 0 and end > start:
+                if start >= 0:
+                    depth = 0
+                    end = start
+                    for i, ch in enumerate(response_text[start:], start):
+                        if ch == '{':
+                            depth += 1
+                        elif ch == '}':
+                            depth -= 1
+                            if depth == 0:
+                                end = i + 1
+                                break
                     response_text = response_text[start:end]
 
                 data = json.loads(response_text)
