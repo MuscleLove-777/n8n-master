@@ -1,0 +1,965 @@
+
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <title>n8n 使い方 2026年版: AI連携で業務を自動化する究極ガイド | n8n AI自動化マスター</title>
+
+    
+    <meta name="description" content="">
+    <meta name="author" content="n8n AI自動化マスター">
+    <link rel="canonical" href="https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-ai-2026-guide.html">
+
+    
+    <meta property="og:site_name" content="n8n AI自動化マスター">
+    <meta property="og:title" content="n8n 使い方 2026年版: AI連携で業務を自動化する究極ガイド">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-ai-2026-guide.html">
+    <meta property="og:locale" content="ja_JP">
+
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="n8n 使い方 2026年版: AI連携で業務を自動化する究極ガイド">
+    <meta name="twitter:description" content="">
+
+    
+    <link rel="alternate" type="application/rss+xml" title="n8n AI自動化マスター" href="https://musclelove-777.github.io/n8n-master/feed.xml">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    
+    
+
+    
+    
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "n8n 使い方 2026年版: AI連携で業務を自動化する究極ガイド",
+    "description": "",
+    "datePublished": "2026-03-30",
+    "dateModified": "2026-03-30",
+    "author": {"@type": "Organization", "name": "n8n AI自動化マスター"},
+    "publisher": {"@type": "Organization", "name": "n8n AI自動化マスター"},
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-ai-2026-guide.html"}
+    ,"keywords": "n8n, 自動化, AI連携, ノーコード, 使い方"
+}
+</script>
+
+
+    <style>
+        /* =============================================
+           CSS変数: テーマカラー（config.THEMEから注入）
+           ============================================= */
+        :root {
+            --color-dark-bg: #0a0a1a;
+            --color-dark-surface: #16213e;
+            --color-primary: #ff6d5a;
+            --color-accent: #1a1a2e;
+            --color-text-dark: #eeeeee;
+            --color-text-muted-dark: #a0aec0;
+
+            --color-light-bg: #fff5f3;
+            --color-light-surface: #ffffff;
+            --color-text-light: #1a202c;
+            --color-text-muted-light: #64748b;
+
+            --font-sans: 'Inter', 'Noto Sans JP', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --max-width: 1280px;
+            --sidebar-width: 320px;
+            --header-height: 64px;
+            --radius: 12px;
+            --radius-sm: 8px;
+            --radius-pill: 9999px;
+
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.2);
+        }
+
+        [data-theme="dark"] {
+            --bg: var(--color-dark-bg);
+            --surface: var(--color-dark-surface);
+            --text: var(--color-text-dark);
+            --text-muted: var(--color-text-muted-dark);
+            --border: rgba(255,255,255,0.08);
+            --code-bg: rgba(255,255,255,0.06);
+        }
+
+        [data-theme="light"] {
+            --bg: var(--color-light-bg);
+            --surface: var(--color-light-surface);
+            --text: var(--color-text-light);
+            --text-muted: var(--color-text-muted-light);
+            --border: rgba(0,0,0,0.08);
+            --code-bg: #f1f5f9;
+        }
+
+        @media (prefers-color-scheme: light) {
+            [data-theme="auto"] {
+                --bg: var(--color-light-bg);
+                --surface: var(--color-light-surface);
+                --text: var(--color-text-light);
+                --text-muted: var(--color-text-muted-light);
+                --border: rgba(0,0,0,0.08);
+                --code-bg: #f1f5f9;
+            }
+        }
+        @media (prefers-color-scheme: dark) {
+            [data-theme="auto"] {
+                --bg: var(--color-dark-bg);
+                --surface: var(--color-dark-surface);
+                --text: var(--color-text-dark);
+                --text-muted: var(--color-text-muted-dark);
+                --border: rgba(255,255,255,0.08);
+                --code-bg: rgba(255,255,255,0.06);
+            }
+        }
+
+        /* =============================================
+           リセット・基本
+           ============================================= */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { font-size: 16px; scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+        }
+
+        /* =============================================
+           流体タイポグラフィ
+           ============================================= */
+        h1 { font-size: clamp(1.75rem, 2.5vw + 1rem, 2.5rem); font-weight: 800; line-height: 1.3; }
+        h2 { font-size: clamp(1.35rem, 1.8vw + 0.8rem, 1.75rem); font-weight: 700; line-height: 1.35; }
+        h3 { font-size: clamp(1.1rem, 1.2vw + 0.6rem, 1.35rem); font-weight: 600; line-height: 1.4; }
+        h4 { font-size: 1.1rem; font-weight: 600; }
+        p { margin-bottom: 1em; }
+
+        a { color: var(--color-accent); text-decoration: none; transition: color 0.2s, opacity 0.2s; }
+        a:hover { opacity: 0.85; text-decoration: underline; }
+        img { max-width: 100%; height: auto; border-radius: var(--radius-sm); }
+
+        code {
+            font-family: var(--font-mono);
+            background: var(--code-bg);
+            padding: 0.15em 0.4em;
+            border-radius: 4px;
+            font-size: 0.88em;
+        }
+        pre {
+            background: var(--code-bg);
+            padding: 1.25em;
+            border-radius: var(--radius-sm);
+            overflow-x: auto;
+            margin-bottom: 1.5em;
+            border: 1px solid var(--border);
+        }
+        pre code { background: none; padding: 0; }
+
+        blockquote {
+            border-left: 4px solid var(--color-accent);
+            padding: 0.75em 1.25em;
+            margin: 1.5em 0;
+            color: var(--text-muted);
+            background: var(--code-bg);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        }
+
+        table { width: 100%; border-collapse: collapse; margin-bottom: 1.5em; }
+        th, td { padding: 0.75em 1em; border: 1px solid var(--border); text-align: left; }
+        th { background: var(--code-bg); font-weight: 600; }
+
+        /* =============================================
+           レイアウト
+           ============================================= */
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+        .layout-main { display: flex; gap: 2.5rem; margin-top: 2rem; margin-bottom: 3rem; }
+        .content-area { flex: 1; min-width: 0; }
+        .sidebar { width: var(--sidebar-width); flex-shrink: 0; }
+
+        @media (max-width: 900px) {
+            .layout-main { flex-direction: column; }
+            .sidebar { width: 100%; }
+        }
+
+        /* =============================================
+           ヘッダー
+           ============================================= */
+        .site-header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: var(--header-height);
+        }
+        .site-logo a {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--color-accent);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        .site-logo a:hover { opacity: 1; text-decoration: none; }
+        .header-right { display: flex; align-items: center; gap: 1.5rem; }
+        .site-nav { display: flex; align-items: center; gap: 1.25rem; }
+        .site-nav a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .site-nav a:hover { color: var(--color-accent); text-decoration: none; }
+
+        /* ダークモード切替ボタン */
+        .theme-toggle {
+            background: var(--code-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            padding: 6px 10px;
+            font-size: 1.1rem;
+            line-height: 1;
+            color: var(--text);
+            transition: background 0.2s;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-toggle:hover { background: var(--color-primary); }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            min-width: 44px;
+            min-height: 44px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text);
+            margin: 5px auto;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .site-nav {
+                display: none;
+                position: absolute;
+                top: var(--header-height);
+                left: 0; right: 0;
+                background: var(--surface);
+                flex-direction: column;
+                padding: 1rem;
+                border-bottom: 1px solid var(--border);
+                box-shadow: var(--shadow-md);
+            }
+            .site-nav.open { display: flex; }
+            .site-nav a { padding: 10px 0; min-height: 44px; display: flex; align-items: center; }
+        }
+
+        /* =============================================
+           Bentoカードグリッド
+           ============================================= */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .card:hover { transform: scale(1.02); box-shadow: var(--shadow-lg); }
+
+        .card-thumb {
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .card-thumb-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: rgba(255,255,255,0.15);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .card-body { padding: 1.25rem 1.5rem; }
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .card-title a { color: var(--text); }
+        .card-title a:hover { color: var(--color-accent); text-decoration: none; }
+
+        .card-meta {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .card-excerpt {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+
+        /* モバイル: カード横型 */
+        @media (max-width: 640px) {
+            .card-grid { grid-template-columns: 1fr; }
+            .card { display: flex; flex-direction: row; }
+            .card-thumb { aspect-ratio: 1 / 1; width: 120px; min-height: 120px; flex-shrink: 0; }
+            .card-body { padding: 1rem; flex: 1; min-width: 0; }
+            .card-title { font-size: 0.95rem; }
+            .card-excerpt { -webkit-line-clamp: 2; }
+        }
+
+        /* =============================================
+           タグ（ピル型バッジ）
+           ============================================= */
+        .tag {
+            display: inline-block;
+            padding: 0.2em 0.65em;
+            font-size: 0.75rem;
+            background: var(--code-bg);
+            color: var(--text-muted);
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+            white-space: nowrap;
+        }
+        .tag:hover { background: var(--color-accent); color: #fff; text-decoration: none; }
+
+        .category-badge {
+            display: inline-block;
+            padding: 0.2em 0.7em;
+            font-size: 0.78rem;
+            font-weight: 600;
+            background: var(--color-accent);
+            color: #fff;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+        }
+        .category-badge:hover { opacity: 0.85; color: #fff; text-decoration: none; }
+
+        .reading-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3em;
+            padding: 0.2em 0.7em;
+            font-size: 0.78rem;
+            font-weight: 600;
+            background: rgba(233,69,96,0.12);
+            color: var(--color-accent);
+            border-radius: var(--radius-pill);
+        }
+
+        /* =============================================
+           パンくず・記事本文・目次
+           ============================================= */
+        .breadcrumb {
+            display: flex; align-items: center; gap: 0.5rem;
+            font-size: 0.85rem; color: var(--text-muted);
+            margin-bottom: 1.5rem; flex-wrap: wrap;
+        }
+        .breadcrumb a { color: var(--text-muted); }
+        .breadcrumb a:hover { color: var(--color-accent); }
+        .breadcrumb-sep { color: var(--text-muted); opacity: 0.5; }
+
+        .article-header { margin-bottom: 2rem; }
+        .article-title {
+            font-size: clamp(1.5rem, 3vw + 0.5rem, 2.2rem);
+            font-weight: 800; line-height: 1.3; margin-bottom: 0.75rem;
+        }
+        .article-meta {
+            display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+            color: var(--text-muted); font-size: 0.88rem;
+        }
+
+        .article-body { font-size: 1rem; line-height: 1.9; }
+        .article-body h2 { margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.4em; border-bottom: 2px solid var(--color-accent); }
+        .article-body h3 { margin-top: 2rem; margin-bottom: 0.75rem; }
+        .article-body ul, .article-body ol { margin: 1em 0; padding-left: 1.5em; }
+        .article-body li { margin-bottom: 0.4em; }
+
+        .toc-container {
+            background: var(--code-bg); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 2rem;
+        }
+        .toc-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--color-accent); }
+        .toc-container ul { list-style: none; padding-left: 0; margin: 0; }
+        .toc-container li { margin-bottom: 0.3em; }
+        .toc-container ul ul { padding-left: 1.25em; }
+        .toc-container a { color: var(--text-muted); font-size: 0.88rem; }
+        .toc-container a:hover { color: var(--color-accent); }
+
+        /* =============================================
+           SNSシェア・ページネーション
+           ============================================= */
+        .share-buttons { display: flex; gap: 0.6rem; margin: 2rem 0; flex-wrap: wrap; }
+        .share-btn {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.5em 1em; border-radius: var(--radius-sm);
+            font-size: 0.82rem; font-weight: 600; color: #fff;
+            text-decoration: none; transition: opacity 0.2s; min-height: 44px;
+        }
+        .share-btn:hover { opacity: 0.85; color: #fff; text-decoration: none; }
+        .share-btn-twitter { background: #1DA1F2; }
+        .share-btn-facebook { background: #1877F2; }
+        .share-btn-hatena { background: #00A4DE; }
+        .share-btn-line { background: #06C755; }
+
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin: 2.5rem 0; }
+        .pagination a, .pagination span {
+            display: inline-flex; align-items: center; justify-content: center;
+            min-width: 44px; height: 44px; padding: 0 0.5em;
+            border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 500;
+            text-decoration: none; transition: background 0.2s, color 0.2s;
+        }
+        .pagination a { color: var(--text-muted); background: var(--surface); border: 1px solid var(--border); }
+        .pagination a:hover { background: var(--color-accent); color: #fff; border-color: var(--color-accent); text-decoration: none; }
+        .pagination .current { background: var(--color-accent); color: #fff; border: 1px solid var(--color-accent); }
+
+        /* =============================================
+           サイドバー
+           ============================================= */
+        .sidebar-widget {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1.5rem;
+        }
+        .sidebar-widget-title {
+            font-size: 0.95rem; font-weight: 700; margin-bottom: 1rem;
+            padding-bottom: 0.5rem; border-bottom: 2px solid var(--color-accent);
+        }
+        .sidebar-category-list { list-style: none; padding: 0; }
+        .sidebar-category-list li { margin-bottom: 0.3rem; }
+        .sidebar-category-list a {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.5rem 0; color: var(--text-muted); font-size: 0.88rem;
+            border-bottom: 1px solid var(--border); text-decoration: none; min-height: 44px;
+        }
+        .sidebar-category-list a:hover { color: var(--color-accent); text-decoration: none; }
+        .sidebar-category-count {
+            font-size: 0.78rem; background: var(--code-bg);
+            padding: 0.15em 0.5em; border-radius: var(--radius-pill);
+        }
+
+        .adsense-slot { margin: 1.5rem 0; text-align: center; }
+
+        /* =============================================
+           フッター
+           ============================================= */
+        .site-footer {
+            background: var(--surface); border-top: 1px solid var(--border);
+            padding: 2.5rem 0; margin-top: 3rem;
+        }
+        .footer-inner {
+            display: flex; justify-content: space-between;
+            align-items: flex-start; flex-wrap: wrap; gap: 2rem;
+        }
+        .footer-section h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 0.3rem; }
+        .footer-links a { color: var(--text-muted); font-size: 0.85rem; }
+        .footer-links a:hover { color: var(--color-accent); }
+        .footer-copyright {
+            text-align: center; margin-top: 2rem; padding-top: 1.5rem;
+            border-top: 1px solid var(--border); font-size: 0.82rem; color: var(--text-muted);
+        }
+
+        /* =============================================
+           ユーティリティ
+           ============================================= */
+        .text-center { text-align: center; }
+        .text-muted { color: var(--text-muted); }
+        .mt-1 { margin-top: 0.5rem; }
+        .mt-2 { margin-top: 1rem; }
+        .mt-3 { margin-top: 1.5rem; }
+        .mb-1 { margin-bottom: 0.5rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .mb-3 { margin-bottom: 1.5rem; }
+        .empty-state { text-align: center; padding: 4rem 1rem; color: var(--text-muted); }
+        .empty-state p { font-size: 1.1rem; }
+    </style>
+</head>
+<body>
+
+    
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="site-logo">
+                <a href="https://musclelove-777.github.io/n8n-master/index.html">n8n AI自動化マスター</a>
+            </div>
+
+            <div class="header-right">
+                <nav class="site-nav" id="siteNav">
+                    <a href="https://musclelove-777.github.io/n8n-master/index.html">ホーム</a>
+                    
+                    <a href="https://musclelove-777.github.io/n8n-master/feed.xml">RSS</a>
+                </nav>
+
+                <button class="theme-toggle" id="themeToggle" aria-label="テーマ切替" title="ダーク/ライト切替">
+                    <span id="themeIcon">&#9790;</span>
+                </button>
+
+                <button class="menu-toggle" aria-label="メニュー" onclick="document.getElementById('siteNav').classList.toggle('open')">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    
+    <main class="container">
+        
+<div class="layout-main">
+    <div class="content-area">
+        <nav class="breadcrumb" aria-label="パンくずリスト">
+            <a href="https://musclelove-777.github.io/n8n-master/index.html">ホーム</a>
+            <span class="breadcrumb-sep">/</span>
+            
+            <a href="https://musclelove-777.github.io/n8n-master/category/n8n 使い方.html">n8n 使い方</a>
+            <span class="breadcrumb-sep">/</span>
+            
+            <span>n8n 使い方 2026年版: AI連携で業務を自動化する究極ガイド</span>
+        </nav>
+
+        <article>
+            <header class="article-header">
+                <h1 class="article-title">n8n 使い方 2026年版: AI連携で業務を自動化する究極ガイド</h1>
+                <div class="article-meta">
+                    <span>2026-03-30</span>
+                    <span class="reading-time">3分で読める</span>
+                    <a href="https://musclelove-777.github.io/n8n-master/category/n8n 使い方.html" class="category-badge">n8n 使い方</a>
+                </div>
+                <div class="card-tags mt-1"><span class="tag">n8n</span><span class="tag">自動化</span><span class="tag">AI連携</span><span class="tag">ノーコード</span><span class="tag">使い方</span></div>
+            </header>
+
+            
+
+            
+            <details class="toc-container" open>
+                <summary class="toc-title" style="cursor:pointer;user-select:none;">目次</summary>
+                <div class="toc"><span class="toctitle">目次</span><ul>
+<li><a href="#_1">この記事でわかること</a></li>
+<li><a href="#_2">結論</a></li>
+<li><a href="#_3">本題</a><ul>
+<li><a href="#n8n2026">n8nとは？基礎の理解と2026年の立ち位置</a></li>
+<li><a href="#n8ndocker">n8nの環境構築：Dockerで始めるセルフホスト</a></li>
+<li><a href="#slackn8n">初めてのワークフロー構築：Slack通知自動化のn8n 使い方</a></li>
+<li><a href="#n8naiopenai-gpt-4o">n8nとAI連携：OpenAI (GPT-4o) を活用したコンテンツ生成</a></li>
+</ul>
+</li>
+<li><a href="#_4">ワークフロー実装テクニック</a><ul>
+<li><a href="#_5">トリガー設定の多様性</a></li>
+<li><a href="#_6">ノード接続とデータフロー</a></li>
+<li><a href="#_7">エラーハンドリングのベストプラクティス</a></li>
+<li><a href="#_8">条件分岐とループ処理</a></li>
+</ul>
+</li>
+<li><a href="#_9">他の自動化ツールとの比較</a></li>
+<li><a href="#faq">よくある質問（FAQ）</a><ul>
+<li><a href="#q1-n8n">Q1: n8nは本当に無料ですか？商用利用は可能ですか？</a></li>
+<li><a href="#q2-n8n">Q2: n8nの学習に役立つリソースは何がありますか？</a></li>
+<li><a href="#q3-n8nai">Q3: n8nのAI連携で具体的にどのような業務が自動化できますか？</a></li>
+</ul>
+</li>
+<li><a href="#_10">おすすめサービス・ツール</a></li>
+<li><a href="#_11">まとめ</a></li>
+</ul>
+</div>
+
+            </details>
+            
+
+            <div class="article-body"><h1 id="n8n-2026-ai">n8n 使い方 2026年版: AI連携で業務を自動化する究極ガイド</h1>
+<h2 id="_1">この記事でわかること</h2>
+<ul>
+<li>n8nの基本からAI連携ワークフロー構築まで、実践的な使い方を網羅的に習得できます。</li>
+<li>Dockerを使ったセルフホスト環境の構築手順と、クラウド版のメリット・デメリットを比較検討できます。</li>
+<li>ZapierやMakeなど他の自動化ツールとの違いを理解し、n8n選定の判断基準が得られます。</li>
+</ul>
+<h2 id="_2">結論</h2>
+<p>n8nは、セルフホストからクラウド、先進的なAIエージェント連携まで柔軟に対応する、オープンソースで非常にパワフルな自動化ツールです。本ガイドで基本操作から具体的なAI連携ワークフローまで、その<strong>n8n 使い方</strong>を網羅的に習得することで、初心者からDevOpsエンジニアまで、誰もが業務を劇的に効率化し、新たな可能性を切り拓くことができるでしょう。</p>
+<h2 id="_3">本題</h2>
+<h3 id="n8n2026">n8nとは？基礎の理解と2026年の立ち位置</h3>
+<p>n8n（エヌエイトエヌ）は、ワークフローを視覚的に構築できるローコード/ノーコードの自動化プラットフォームです。オープンソースであるため、自分のサーバーにセルフホストして利用できるのが最大の特長の一つ。これにより、データのプライバシーを完全にコントロールしつつ、企業のセキュリティ要件に合わせた柔軟なカスタマイズが可能になります。クラウド版（n8n Cloud）も提供されており、運用の手間なくすぐに使い始めたい場合に最適です。</p>
+<p>2026年現在、n8nは単なるタスク自動化ツールを超え、AIエージェントのハブとしての役割も強化しています。OpenAI、LangChain、各種ベクトルデータベースといった最新のAI技術とシームレスに連携し、単調なルーティンワークだけでなく、コンテンツ生成、データ分析、顧客対応といった高度な業務の自動化も可能にしています。</p>
+<h3 id="n8ndocker">n8nの環境構築：Dockerで始めるセルフホスト</h3>
+<p>最も手軽かつ推奨される<strong>n8n 使い方</strong>の第一歩は、Dockerを利用したセルフホスト環境の構築です。数分でn8nサーバーを立ち上げ、すぐにワークフローを構築できます。</p>
+<ol>
+<li>
+<p><strong>DockerとDocker Composeのインストール</strong>：
+    お使いのOS（Windows, macOS, Linux）にDocker Desktopをインストールします。Docker DesktopにはDocker Composeも含まれています。</p>
+</li>
+<li>
+<p><strong><code>docker-compose.yml</code> ファイルの作成</strong>：
+    任意のディレクトリに<code>docker-compose.yml</code>という名前のファイルを作成し、以下の内容を記述します。
+    ```yaml
+    version: '3.8'</p>
+<p>services:
+  n8n:
+    image: n8n-io/n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=${N8N_HOST:-localhost}
+      - N8N_PROTOCOL=${N8N_PROTOCOL:-http}
+      - N8N_PORT=5678
+      - WEBHOOK_URL=${N8N_PROTOCOL:-http}://${N8N_HOST:-localhost}:5678/
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=<YOUR_USERNAME>
+      - N8N_BASIC_AUTH_PASSWORD=<YOUR_PASSWORD>
+      - TZ=Asia/Tokyo # タイムゾーン設定
+    volumes:
+      - n8n_data:/home/node/.n8n</p>
+<p>volumes:
+  n8n_data:
+    driver: local
+<code>``
+*</code><YOUR_USERNAME><code>と</code><YOUR_PASSWORD><code>は、ご自身で設定する認証情報に置き換えてください。
+*</code>N8N_HOST<code>や</code>N8N_PROTOCOL`は、外部からアクセスする場合、適切なドメイン名やプロトコル（https）に設定します。</p>
+</li>
+<li>
+<p><strong>n8nの起動</strong>：
+    <code>docker-compose.yml</code>ファイルを作成したディレクトリで、ターミナルまたはコマンドプロンプトを開き、以下のコマンドを実行します。
+    <code>bash
+    docker-compose up -d</code>
+    これにより、n8nサーバーがバックグラウンドで起動します。</p>
+</li>
+<li>
+<p><strong>n8nへのアクセス</strong>：
+    ブラウザで<code>http://localhost:5678</code>にアクセスします。設定したユーザー名とパスワードでログインすれば、n8nのワークフローエディタが表示されます。</p>
+</li>
+</ol>
+<h3 id="slackn8n">初めてのワークフロー構築：Slack通知自動化の<strong>n8n 使い方</strong></h3>
+<p>基本的なワークフローの<strong>n8n 使い方</strong>を学ぶために、簡単なSlack通知ワークフローを構築してみましょう。特定のHTTPリクエストを受け取ったら、Slackにメッセージを送信する例です。</p>
+<ol>
+<li>
+<p><strong>「New Workflow」の作成</strong>：
+    n8nのダッシュボードで「New」ボタンをクリックし、「Workflow」を選択します。</p>
+</li>
+<li>
+<p><strong>トリガーノードの設定</strong>：
+    ワークフローエディタで「Add first Node」をクリックし、「Webhook」ノードを検索して追加します。</p>
+<ul>
+<li><strong>HTTP Method</strong>: <code>POST</code> (または<code>GET</code>など、任意)</li>
+<li><strong>Path</strong>: <code>my-slack-notification</code> (任意のパス名)</li>
+<li>ノードが作成されたら、URLが表示されます。これをコピーしておきましょう。</li>
+</ul>
+</li>
+<li>
+<p><strong>メッセージデータの加工（Functionノード）</strong>：
+    Webhookノードの右側の「+」ボタンをクリックし、「Function」ノードを追加します。
+    Functionノードに以下のJavaScriptコードを記述し、Webhookで受け取ったデータを加工します。
+    <code>javascript
+    return [
+      {
+        json: {
+          text: `新しい通知が届きました！メッセージ: ${$json.body.message || 'データなし'}`,
+          channel: '#general' // 通知したいSlackチャンネル
+        }
+      }
+    ];</code></p>
+<ul>
+<li><code>$json.body.message</code>は、Webhookのボディで<code>{"message": "テスト"}</code>のようなJSONデータが送られてくることを想定しています。</li>
+</ul>
+</li>
+<li>
+<p><strong>Slackノードの設定</strong>：
+    Functionノードの右側の「+」ボタンをクリックし、「Slack」ノードを検索して追加します。</p>
+<ul>
+<li><strong>Operations</strong>: <code>Message</code></li>
+<li><strong>Resource</strong>: <code>Message</code></li>
+<li><strong>Authentication</strong>: <code>OAuth</code>を選択し、「Connect an account」からn8nとSlackを連携します。Slackアプリを作成し、適切なスコープ（<code>chat:write</code>, <code>channels:read</code>など）を付与する必要があります。詳しい設定は{{internal_link:Slack連携ガイド}}を参照してください。</li>
+<li><strong>Channel</strong>: <code>{{ $json.channel }}</code> (Functionノードで設定したチャンネル名が動的に反映されます)</li>
+<li><strong>Text</strong>: <code>{{ $json.text }}</code> (Functionノードで加工したメッセージが動的に反映されます)</li>
+</ul>
+</li>
+<li>
+<p><strong>ワークフローの実行とテスト</strong>：</p>
+<ul>
+<li>ワークフローエディタ右上の「Activate」トグルをONにして、ワークフローをアクティブにします。</li>
+<li>Postmanやcurl、またはブラウザから、WebhookノードでコピーしたURLに対してPOSTリクエストを送信します。
+    <code>bash
+    curl -X POST -H "Content-Type: application/json" -d '{"message": "Hello from n8n!"}' http://localhost:5678/webhook/my-slack-notification</code></li>
+<li>Slackの指定したチャンネルにメッセージが届くことを確認します。</li>
+</ul>
+</li>
+</ol>
+<h3 id="n8naiopenai-gpt-4o">n8nとAI連携：OpenAI (GPT-4o) を活用したコンテンツ生成</h3>
+<p>2026年における<strong>n8n 使い方</strong>の最先端は、AIとの連携にあります。ここでは、OpenAIの最新モデルGPT-4oを使って、キーワードからブログ記事のアイデアを自動生成するワークフローを構築します。</p>
+<ol>
+<li>
+<p><strong>OpenAI資格情報の設定</strong>：
+    n8nの左メニューにある「Credentials」から「OpenAI API」を選択し、APIキー（<code>sk-xxxxxxxxxxxx</code>）を設定します。</p>
+</li>
+<li>
+<p><strong>トリガーノード（手動実行）</strong>：
+    「Start」ノードを使用するか、テスト用に「Manual Trigger」ノードを追加します。ここでは、特定のキーワードを手動で入力することを想定します。</p>
+</li>
+<li>
+<p><strong>「Set」ノードでキーワードを準備</strong>：
+    Manual Triggerの次に「Set」ノードを追加し、<code>key</code>として<code>keyword</code>、<code>value</code>として<code>「n8n AI活用事例」</code>などの具体的なキーワードを設定します。これにより、次のノードで<code>$json.keyword</code>としてこの値を利用できます。</p>
+</li>
+<li>
+<p><strong>「ChatGPT (OpenAI)」ノードの追加</strong>：
+    Setノードの次に「ChatGPT (OpenAI)」ノードを追加します。</p>
+<ul>
+<li><strong>Credentials</strong>: 設定済みのOpenAI APIキーを選択。</li>
+<li><strong>Model</strong>: <code>gpt-4o</code> (最新かつ高性能なモデルを選択)</li>
+<li><strong>Prompt</strong>: 以下のように記述します。
+    <code>text
+    あなたは経験豊富なコンテンツマーケターです。以下のキーワードについて、読者の興味を引くブログ記事のアイデアを3つ提案してください。各アイデアはタイトルと簡単な説明を含めてください。
+    キーワード: {{ $json.keyword }}</code></li>
+<li><code>{{ $json.keyword }}</code>は、Setノードで設定したキーワードを動的に参照しています。</li>
+</ul>
+</li>
+<li>
+<p><strong>「Google Sheets」ノードで結果を保存</strong>：
+    ChatGPTノードの次に「Google Sheets」ノードを追加し、生成されたアイデアをスプレッドシートに自動で記録します。</p>
+<ul>
+<li><strong>Credentials</strong>: GoogleアカウントをOAuthで連携します。</li>
+<li><strong>Operations</strong>: <code>Append Row</code></li>
+<li><strong>Spreadsheet ID</strong>: 保存したいGoogleスプレッドシートのID (URLから取得)</li>
+<li><strong>Sheet Name</strong>: シート名 (例: <code>AI生成アイデア</code>)</li>
+<li><strong>Values</strong>: <code>Add Field</code>をクリックし、<code>Column A</code>に<code>{{ $json.choices[0].message.content }}</code>のようにChatGPTノードの出力結果を設定します。<ul>
+<li><strong>補足</strong>: ChatGPTノードの出力はJSON形式で、<code>choices[0].message.content</code>の中に生成されたテキストが含まれています。データ構造は実行時に確認できます。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>このワークフローにより、キーワードを入力するだけでAIがブログ記事のアイデアを瞬時に生成し、自動でスプレッドシートに保存されるようになります。さらに、LangChainノードやベクトルデータベース（Pinecone, Weaviate等）と組み合わせることで、より高度なRAG（Retrieval Augmented Generation）システムや、自律型AIエージェントの構築も可能です。{{internal_link:n8n AIエージェント構築}}でさらに深掘りしましょう。</p>
+<h2 id="_4">ワークフロー実装テクニック</h2>
+<p><strong>n8n 使い方</strong>をマスターするためには、以下の実装テクニックが不可欠です。</p>
+<h3 id="_5">トリガー設定の多様性</h3>
+<p>n8nのワークフローは、様々なトリガーで開始できます。
+*   <strong>Webhook</strong>: 外部システムからのHTTPリクエストを待ち受けます。API連携の基本です。
+*   <strong>Cron</strong>: 定期的にワークフローを実行します（例: 毎日午前9時、毎週月曜日）。レポート生成や定期的なデータ同期に利用。
+*   <strong>Email</strong>: 特定のメールボックスに届いたメールをトリガーとします。顧客からの問い合わせ対応自動化などに。
+*   <strong>Service Specific Triggers</strong>: Google Driveのファイル変更、Slackの新規メッセージ、Shopifyの新規注文など、特定のサービスイベントを直接トリガーできます。</p>
+<p>適切なトリガーを選ぶことで、業務の自動化範囲が大きく広がります。</p>
+<h3 id="_6">ノード接続とデータフロー</h3>
+<p>n8nはノードを接続してデータを流していくことでワークフローを構築します。重要なのは、各ノードの出力が次のノードの入力としてどのように利用できるかを理解することです。
+*   <code>$json</code>：現在のノードの入力データ全体を参照します。
+*   <code>$json.propertyName</code>：入力データの特定のプロパティを参照します。
+*   <code>$node</code>：他のノードの出力データ全体を参照します（例: <code>$node["Webhook"].json.body</code>）。
+*   <strong>Functionノード</strong>: JavaScriptを用いて複雑なデータ変換や加工を行う強力なノードです。複数のデータを結合したり、条件に基づいてデータを整形したりできます。
+*   <strong>Split In Batchesノード</strong>: 多数のアイテムを一括処理する際に、負荷を分散するためにバッチに分割して処理を進めることができます。</p>
+<h3 id="_7">エラーハンドリングのベストプラクティス</h3>
+<p>自動化ワークフローは常に完璧ではありません。エラー発生時の適切なハンドリングは、安定稼働に不可欠です。
+*   <strong>Continue On Error</strong>: 個別のノード設定で「Continue On Error」を有効にすると、そのノードでエラーが発生してもワークフロー全体が停止せず、次のノードに進みます。
+*   <strong>Error Triggerノード</strong>: ワークフロー内でエラーが発生した場合に、別の特定のワークフローをトリガーとして実行できます。エラー通知やログ記録に便利です。
+*   <strong>Try/Catchブロック</strong>: 複数のノードをグループ化し、そのブロック内で発生したエラーをCatchノードで捕捉し、リカバリー処理を行うことができます。
+*   <strong>通知ノード</strong>: エラー発生時にSlackやメールに通知を送信することで、問題に迅速に対応できます。</p>
+<h3 id="_8">条件分岐とループ処理</h3>
+<p>複雑なビジネスロジックを実装するために、条件分岐とループ処理は必須の機能です。
+*   <strong>Ifノード</strong>: 指定した条件（例: <code>$json.status === 'success'</code>）に基づいてワークフローのパスを分岐させます。これにより、成功時と失敗時で異なる処理を実行できます。
+*   <strong>Loop Over Itemsノード</strong>: 配列内の各アイテムに対して同じ処理を繰り返したい場合に利用します。例えば、スプレッドシートの各行を処理する際などに活用できます。
+*   <strong>Mergeノード</strong>: 複数の異なるパスで処理されたデータを一つに結合する際に使用します。</p>
+<h2 id="_9">他の自動化ツールとの比較</h2>
+<p>n8nは市場に数多く存在する自動化ツールの中でも、特にユニークな立ち位置を占めています。Zapier、Make (旧 Integromat)、Microsoft Power Automateといった主要なツールと比較してみましょう。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">特徴/ツール</th>
+<th style="text-align: left;">n8n</th>
+<th style="text-align: left;">Zapier</th>
+<th style="text-align: left;">Make (旧 Integromat)</th>
+<th style="text-align: left;">Microsoft Power Automate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>価格体系</strong></td>
+<td style="text-align: left;">基本無料（オープンソース）、クラウド版は従量課金/定額制</td>
+<td style="text-align: left;">無料枠あり、タスク数/プランに基づく定額制</td>
+<td style="text-align: left;">無料枠あり、操作数/データ量に基づく定額制</td>
+<td style="text-align: left;">Microsoft 365ユーザー向け、プランに基づく</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>オープンソース性</strong></td>
+<td style="text-align: left;">✅ 完全オープンソース</td>
+<td style="text-align: left;">❌ プロプライエタリ</td>
+<td style="text-align: left;">❌ プロプライエタリ</td>
+<td style="text-align: left;">❌ プロプライエタリ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>カスタマイズ性</strong></td>
+<td style="text-align: left;">✅ 非常に高い（コード記述、自作ノード）</td>
+<td style="text-align: left;">△ 限定的（組み込み機能、Hooks）</td>
+<td style="text-align: left;">〇 高い（モジュール、Function）</td>
+<td style="text-align: left;">〇 高い（Connector、スクリプト）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>オンプレミス対応</strong></td>
+<td style="text-align: left;">✅ Docker等でセルフホスト可能</td>
+<td style="text-align: left;">❌ クラウドのみ</td>
+<td style="text-align: left;">❌ クラウドのみ</td>
+<td style="text-align: left;">△ オンプレミスゲートウェイが必要</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>AI連携の深さ</strong></td>
+<td style="text-align: left;">✅ OpenAI, LangChain等とネイティブ連携、エージェント構築も</td>
+<td style="text-align: left;">〇 既存連携は多いが、エージェント構築は限定的</td>
+<td style="text-align: left;">〇 連携は多いが、複雑なAIはFunctionが必要</td>
+<td style="text-align: left;">〇 Azure AI等と連携可能</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>学習コスト</strong></td>
+<td style="text-align: left;">〇 中程度（Docker知識、JavaScriptが役立つ）</td>
+<td style="text-align: left;">〇 低〜中程度</td>
+<td style="text-align: left;">〇 中程度</td>
+<td style="text-align: left;">〇 中程度</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>主要ターゲット</strong></td>
+<td style="text-align: left;">開発者、DevOps、データプライバシー重視の企業</td>
+<td style="text-align: left;">初心者、マーケター、ビジネスユーザー</td>
+<td style="text-align: left;">開発者、ビジネスユーザー</td>
+<td style="text-align: left;">Microsoftエコシステムユーザー</td>
+</tr>
+</tbody>
+</table>
+<p>n8nの最大の強みは、オープンソースであることによる「自由度と柔軟性」です。Dockerを使えば、自社環境でデータを完全にコントロールしながら自動化が可能です。また、FunctionノードやHTTPノードを駆使すれば、あらゆるAPIと連携し、AIモデルとの深い統合や複雑なロジックを実装できます。他のツールが提供する豊富な既製コネクタも魅力的ですが、n8nはそれらにとどまらない、真にカスタマイズされた自動化を実現したい場合に最適な選択肢となります。</p>
+<h2 id="faq">よくある質問（FAQ）</h2>
+<h3 id="q1-n8n">Q1: n8nは本当に無料ですか？商用利用は可能ですか？</h3>
+<p>A1: n8nのコミュニティ版（セルフホスト版）は、MITライセンスのオープンソースであり、完全に無料で利用できます。商用利用も可能です。ただし、商用利用で大規模なシステムを運用する場合や、エンタープライズ向けの機能、サポートが必要な場合は、n8n Cloudの有料プランやエンタープライズ版を検討することをおすすめします。これにより、セキュリティ、スケーラビリティ、専門サポートといったメリットを享受できます。</p>
+<h3 id="q2-n8n">Q2: n8nの学習に役立つリソースは何がありますか？</h3>
+<p>A2: n8nの学習には、公式ドキュメント（<a href="https://docs.n8n.io/">https://docs.n8n.io/</a>）が最も重要です。また、公式ブログ（<a href="https://blog.n8n.io/">https://blog.n8n.io/</a>）やコミュニティフォーラム（<a href="https://community.n8n.io/">https://community.n8n.io/</a>）では、最新の機能や他のユーザーの事例、質問と回答が豊富に公開されています。YouTubeのチュートリアル動画も視覚的な学習に非常に有効です。まずは簡単なワークフローを実際に構築しながら、<strong>n8n 使い方</strong>を体感していくのが上達の近道です。</p>
+<h3 id="q3-n8nai">Q3: n8nのAI連携で具体的にどのような業務が自動化できますか？</h3>
+<p>A3: n8nのAI連携は、多岐にわたる業務自動化を可能にします。例えば、Webサイトからの情報収集とOpenAIによる要約、顧客からの問い合わせメールをLangChainで分析し、適切な部署への振り分けと自動返信生成、SNS投稿の企画立案からChatGPTでの記事草稿生成、画像生成AIを使ったマーケティング素材の自動作成、さらにベクトルデータベースと連携して高度なRAGシステムによる社内ナレッジ検索などがあります。単調な繰り返し作業だけでなく、創造性や判断を伴う業務の一部もAIに任せることが可能です。</p>
+<h2 id="_10">おすすめサービス・ツール</h2>
+<p>この記事で紹介した内容を実践するために、以下のサービスがおすすめです。</p>
+<ul>
+<li><strong><a href="https://www.amazon.co.jp?tag=musclelove07-22">Amazon</a></strong> - Amazonで自動化関連書籍を探す</li>
+<li><strong><a href="https://www.rakuten.co.jp">楽天ブックス</a></strong> - 楽天で自動化関連書籍を探す</li>
+</ul>
+<p><em>※ 上記リンクからご利用いただくと、サイト運営の支援になります。</em></p>
+<h2 id="_11">まとめ</h2>
+<p>本記事では、<strong>n8n 使い方</strong>の基本から、Dockerによる環境構築、そして最先端のAI連携ワークフローまで、その実践的な側面を詳しく解説しました。</p>
+<p>n8nの最大の魅力は、そのオープンソース性による「圧倒的な自由度」と、進化を続ける「AI連携機能」にあります。セルフホストでデータを自社管理しつつ、ローコードで複雑な自動化や高度なAIエージェントを構築できるのは、他のツールにはない大きな優位性です。2026年を迎えた今、業務自動化に留まらない「自律的なビジネスプロセス」の構築は、企業の競争力を高める上で不可欠です。</p>
+<p>さあ、あなたも今日からn8nを始め、業務の効率化と新たな価値創造の第一歩を踏み出しましょう。まずは、本記事で紹介したDockerでの環境構築から試してみて、その無限の可能性を体験してください。{{internal_link:n8nハンズオンセミナー}}で、さらに深い学びを得ることも可能です。</p></div>
+
+            
+
+            <div class="share-buttons">
+                <a class="share-btn share-btn-twitter" href="https://twitter.com/intent/tweet?url=https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-ai-2026-guide.html&text=n8n 使い方 2026年版: AI連携で業務を自動化する究極ガイド" target="_blank" rel="noopener noreferrer">X でシェア</a>
+                <a class="share-btn share-btn-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-ai-2026-guide.html" target="_blank" rel="noopener noreferrer">Facebook</a>
+                <a class="share-btn share-btn-hatena" href="https://b.hatena.ne.jp/add?mode=confirm&url=https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-ai-2026-guide.html&title=n8n 使い方 2026年版: AI連携で業務を自動化する究極ガイド" target="_blank" rel="noopener noreferrer">はてブ</a>
+                <a class="share-btn share-btn-line" href="https://social-plugins.line.me/lineit/share?url=https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-ai-2026-guide.html" target="_blank" rel="noopener noreferrer">LINE</a>
+            </div>
+        </article>
+
+        
+    </div>
+</div>
+
+    </main>
+
+    
+    
+
+    
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-section">
+                    <h4>n8n AI自動化マスター</h4>
+                    <p class="text-muted" style="font-size:0.85rem;max-width:300px;">オープンソースAI自動化ツールn8nの使い方・ワークフロー構築・AIエージェント連携を毎日更新。GitHub15万スターの自動化プラットフォームを完全解説。</p>
+                </div>
+                <div class="footer-section">
+                    <h4>カテゴリ</h4>
+                    <ul class="footer-links"></ul>
+                </div>
+                <div class="footer-section">
+                    <h4>リンク</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://musclelove-777.github.io/n8n-master/sitemap.xml">サイトマップ</a></li>
+                        <li><a href="https://musclelove-777.github.io/n8n-master/feed.xml">RSSフィード</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-copyright">&copy; 2026 n8n AI自動化マスター. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+    (function() {
+        var toggle = document.getElementById('themeToggle');
+        var icon = document.getElementById('themeIcon');
+        var html = document.documentElement;
+        function getStored() { try { return localStorage.getItem('theme'); } catch(e) { return null; } }
+        function setTheme(t) {
+            html.setAttribute('data-theme', t);
+            icon.textContent = t === 'light' ? '\u2600' : '\u263E';
+            try { localStorage.setItem('theme', t); } catch(e) {}
+        }
+        var s = getStored(); if (s) setTheme(s);
+        toggle.addEventListener('click', function() {
+            setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        });
+    })();
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('a[href^="http"]').forEach(function(l) {
+            if (l.hostname !== window.location.hostname) {
+                l.setAttribute('target', '_blank');
+                l.setAttribute('rel', 'noopener noreferrer');
+            }
+        });
+    });
+    </script>
+</body>
+</html>
