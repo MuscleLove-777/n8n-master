@@ -59,12 +59,14 @@ def run(config, prompts=None):
 
         max_keyword_retries = 5
         data = None
+        decoder = json.JSONDecoder()
         for attempt in range(1, max_keyword_retries + 1):
             try:
                 response = client.models.generate_content(
                     model=config.GEMINI_MODEL, contents=prompt, config=keyword_config
                 )
                 response_text = response.text.strip()
+                logger.info("Gemini応答（試行%d）: %s", attempt, response_text[:200])
 
                 if "```" in response_text:
                     response_text = response_text.split("```")[1]
@@ -72,22 +74,16 @@ def run(config, prompts=None):
                         response_text = response_text[4:]
                     response_text = response_text.strip()
 
-                # 最初のJSONオブジェクトだけを抽出（Extra data対策）
+                # raw_decodeで最初のJSONオブジェクトだけを安全にパース
+                # （Extra data / 複数JSONオブジェクト返却対策）
                 start = response_text.find("{")
+                if start < 0:
+                    start = response_text.find("[")
                 if start >= 0:
-                    depth = 0
-                    end = start
-                    for i, ch in enumerate(response_text[start:], start):
-                        if ch == '{':
-                            depth += 1
-                        elif ch == '}':
-                            depth -= 1
-                            if depth == 0:
-                                end = i + 1
-                                break
-                    response_text = response_text[start:end]
+                    data, _ = decoder.raw_decode(response_text, start)
+                else:
+                    data = json.loads(response_text)
 
-                data = json.loads(response_text)
                 # Geminiがリストで返す場合があるので先頭要素を取得
                 if isinstance(data, list):
                     data = data[0]
@@ -99,11 +95,12 @@ def run(config, prompts=None):
                 )
                 if attempt < max_keyword_retries:
                     time.sleep(2 * attempt)
-                else:
-                    raise
 
-        # デフォルト値でフォールバック
+        # デフォルト値でフォールバック（全リトライ失敗時も安全に続行）
         import random
+        if data is None:
+            logger.warning("全リトライ失敗。デフォルトキーワードで続行します")
+            data = {}
         category = data.get("category", random.choice(config.TARGET_CATEGORIES))
         keyword = data.get("keyword", category)
         logger.info("選定結果 - カテゴリ: %s, キーワード: %s", category, keyword)
