@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     
-    <title>2026年版！n8n使い方 完全ガイド【AI連携も】 | n8n AI自動化マスター</title>
+    <title>{{ $json.prompt }} | n8n AI自動化マスター</title>
 
     
     <meta name="description" content="">
     <meta name="author" content="n8n AI自動化マスター">
-    <link rel="canonical" href="https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-complete-guide-ai-2026.html">
+    <link rel="canonical" href="https://musclelove-777.github.io/n8n-master/articles/jsonprompt.html">
 
     
     <meta property="og:site_name" content="n8n AI自動化マスター">
-    <meta property="og:title" content="2026年版！n8n使い方 完全ガイド【AI連携も】">
+    <meta property="og:title" content="{{ $json.prompt }}">
     <meta property="og:description" content="">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-complete-guide-ai-2026.html">
+    <meta property="og:url" content="https://musclelove-777.github.io/n8n-master/articles/jsonprompt.html">
     <meta property="og:locale" content="ja_JP">
 
     
@@ -26,7 +26,7 @@
 
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="2026年版！n8n使い方 完全ガイド【AI連携も】">
+    <meta name="twitter:title" content="{{ $json.prompt }}">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="">
 
@@ -58,15 +58,15 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "2026年版！n8n使い方 完全ガイド【AI連携も】",
+    "headline": "{{ $json.prompt }}",
     "description": "",
     "datePublished": "2026-04-18",
     "dateModified": "2026-04-18",
     "author": {"@type": "Organization", "name": "n8n AI自動化マスター"},
     "publisher": {"@type": "Organization", "name": "n8n AI自動化マスター"},
-    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-complete-guide-ai-2026.html"}
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://musclelove-777.github.io/n8n-master/articles/jsonprompt.html"}
     
-    ,"keywords": "n8n, 自動化, ノーコード, AI連携, チュートリアル"
+    ,"keywords": "自動生成, ブログ, 記事, SEO, 最新"
 }
 </script>
 
@@ -695,7 +695,7 @@
             <a href="https://musclelove-777.github.io/n8n-master/category/n8n 使い方.html">n8n 使い方</a>
             <span class="breadcrumb-sep">/</span>
             
-            <span>2026年版！n8n使い方 完全ガイド【AI連携も】</span>
+            <span>{{ $json.prompt }}</span>
         </nav>
 
         <article>
@@ -708,13 +708,13 @@
             
 
             <header class="article-header">
-                <h1 class="article-title">2026年版！n8n使い方 完全ガイド【AI連携も】</h1>
+                <h1 class="article-title">{{ $json.prompt }}</h1>
                 <div class="article-meta">
                     <span>2026-04-18</span>
                     <span class="reading-time">3分で読める</span>
                     <a href="https://musclelove-777.github.io/n8n-master/category/n8n 使い方.html" class="category-badge">n8n 使い方</a>
                 </div>
-                <div class="card-tags mt-1"><span class="tag">n8n</span><span class="tag">自動化</span><span class="tag">ノーコード</span><span class="tag">AI連携</span><span class="tag">チュートリアル</span></div>
+                <div class="card-tags mt-1"><span class="tag">自動生成</span><span class="tag">ブログ</span><span class="tag">記事</span><span class="tag">SEO</span><span class="tag">最新</span></div>
             </header>
 
             
@@ -723,121 +723,15 @@
             <details class="toc-container" open>
                 <summary class="toc-title" style="cursor:pointer;user-select:none;">目次</summary>
                 <div class="toc"><span class="toctitle">目次</span><ul>
-<li><a href="#_1">この記事でわかること</a></li>
-<li><a href="#_2">結論</a></li>
-<li><a href="#n8n">本題：n8nを始めよう！導入から最初のワークフローまで</a><ul>
-<li><a href="#1-n8ndocker">1. n8nの導入方法：Dockerで手軽にセルフホスト</a></li>
-<li><a href="#2-n8n">2. n8nのインターフェース概要と基本操作</a></li>
-<li><a href="#3-slack">3. 初めてのワークフロー構築：Slackに自動投稿する</a></li>
-<li><a href="#4-n8naiopenai">4. n8nとAI連携：OpenAIノードで高度なコンテンツ生成</a></li>
-</ul>
-</li>
-<li><a href="#_3">おすすめサービス・ツール</a></li>
+<li><a href="#_1">おすすめサービス・ツール</a></li>
 </ul>
 </div>
 
             </details>
             
 
-            <div class="article-body"><h1 id="2026n8n-ai">2026年版！n8n使い方 完全ガイド【AI連携も】</h1>
-<p>「もっと効率的に仕事をしたい」「手作業の繰り返しから解放されたい」そうお考えの皆さん、n8nはまさにその願いを叶えるための強力なツールです。本記事では、自動化のスペシャリストである私が、2026年最新のn8nの「使い方」を、初心者の方からDevOpsエンジニアまで、あらゆるレベルの方に実践的な視点から徹底解説します。セルフホスト環境の構築からクラウド版の活用、最新のAIエージェント連携まで、具体的なワークフロー例を交えながらn8nの真髄に迫りましょう。</p>
-<h2 id="_1">この記事でわかること</h2>
-<ul>
-<li>n8nの導入方法から基本的なインターフェース操作、初めてのワークフロー構築まで、つまずきやすいポイントをクリアに理解できます。</li>
-<li>2026年現在のn8nにおけるAIノード（OpenAIなど）やLangChain連携、ベクトルデータベースを活用した高度な自動化テクニックを習得し、業務の質と速度を飛躍的に向上させるヒントを得られます。</li>
-<li>Zapier、Make、Power Automateといった他の主要な自動化ツールとの客観的な比較を通じて、あなたのビジネスやプロジェクトに最適なツールを見極める知識が手に入ります。</li>
-</ul>
-<h2 id="_2">結論</h2>
-<p>n8nは、セルフホスト可能で高度なカスタマイズ性を持つオープンソースの自動化ツールであり、2026年には特にAI連携機能が飛躍的に進化しています。適切な導入方法とノードの使い方を習得すれば、プログラミング知識が少なくても、複雑な業務プロセスやデータ処理を効率的かつセキュアに自動化し、あなたの生産性を劇的に向上させることが可能です。特にDockerを使った環境構築と、直感的なUIでのワークフロー設計が、その強力な機能を誰もが扱えるものにしています。</p>
-<h2 id="n8n">本題：n8nを始めよう！導入から最初のワークフローまで</h2>
-<h3 id="1-n8ndocker">1. n8nの導入方法：Dockerで手軽にセルフホスト</h3>
-<p>n8nの最大の魅力の一つは、セルフホストできる点です。これにより、データのプライバシーを完全にコントロールし、コストを抑えることができます。最も推奨される導入方法はDockerを使った方法です。今回はその手順を解説します。</p>
-<p><strong>必要なもの:</strong>
-*   Dockerがインストールされたサーバー、またはローカルPC
-*   最低限のコマンドライン操作スキル</p>
-<p><strong>手順:</strong>
-1.  <strong>Docker Composeファイルの作成</strong>
-    <code>docker-compose.yml</code>というファイルを作成し、以下の内容を記述します。
-    ```yaml
-    version: '3.8'</p>
-<pre><code>services:
-  n8n:
-    image: n8n.io/n8n
-    restart: always
-    ports:
-      - "5678:5678"
-    environment:
-      - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}
-      - N8N_PORT=5678
-      - N8N_PROTOCOL=https
-      - WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
-      - GENERIC_TIMEZONE=Asia/Tokyo
-      - TZ=Asia/Tokyo
-      - N8N_BASIC_AUTH_ACTIVE=true # ベーシック認証を有効にする場合
-      - N8N_BASIC_AUTH_USER=user # ユーザー名
-      - N8N_BASIC_AUTH_PASSWORD=password # パスワード
-      # データ永続化のためのボリューム設定
-    volumes:
-      - ./n8n_data:/home/node/.n8n
-```
-*   `N8N_HOST`, `WEBHOOK_URL`: 自身のドメインに合わせて設定してください。Cloudflareなどのリバースプロキシを介してSSLを設定するのが一般的です。
-*   `N8N_BASIC_AUTH_USER`, `N8N_BASIC_AUTH_PASSWORD`: セキュリティ強化のため、必ず設定し、推測されにくいパスワードを設定してください。
-*   `volumes`: `./n8n_data:/home/node/.n8n` は、n8nのデータをホストマシン上の`n8n_data`ディレクトリに保存するための設定です。これにより、コンテナを削除してもデータが失われません。
-</code></pre>
-<ol>
-<li>
-<p><strong>n8nの起動</strong>
-    <code>docker-compose.yml</code>があるディレクトリで、以下のコマンドを実行します。
-    <code>bash
-    docker-compose up -d</code>
-    これにより、n8nコンテナがバックグラウンドで起動します。</p>
-</li>
-<li>
-<p><strong>n8nへのアクセス</strong>
-    ブラウザで <code>http://localhost:5678</code> (ローカルPCの場合) または <code>https://your-domain.com</code> (ドメイン設定済みの場合) にアクセスします。初回アクセス時には、ユーザー登録画面が表示されるので、指示に従って管理者アカウントを作成してください。{{internal_link:n8nのインストール方法の詳細はこちら}}</p>
-</li>
-</ol>
-<h3 id="2-n8n">2. n8nのインターフェース概要と基本操作</h3>
-<p>n8nのインターフェースは直感的で、ドラッグ＆ドロップでノードを配置し、接続するだけでワークフローを構築できます。</p>
-<ul>
-<li><strong>キャンバス (Canvas):</strong> ノードを配置し、接続してワークフローを構築するメインの作業エリアです。</li>
-<li><strong>ノードパネル (Nodes Panel):</strong> 左側にあるパネルで、トリガー、アプリケーション、ユーティリティなど、様々な種類のノードがカテゴリ分けされて表示されています。検索機能も充実しています。</li>
-<li><strong>プロパティパネル (Properties Panel):</strong> ノードを選択すると、右側にそのノードの設定画面が表示されます。ここでAPIキーや実行条件などを詳細に設定します。</li>
-<li><strong>実行履歴 (Executions):</strong> ワークフローの実行履歴を確認できます。成功/失敗、実行時間、各ノードの入出力データまで詳細にトレース可能です。</li>
-</ul>
-<h3 id="3-slack">3. 初めてのワークフロー構築：Slackに自動投稿する</h3>
-<p>それでは、実際にシンプルなワークフローを作成してみましょう。ここでは「毎日決まった時間にSlackにメッセージを投稿する」ワークフローを例にします。</p>
-<ol>
-<li><strong>新しいワークフローの作成:</strong> n8nのダッシュボードから「Add Workflow」をクリックします。</li>
-<li><strong>トリガーノードの追加:</strong> 左のノードパネルから「Trigger」カテゴリを選択し、「Cron」ノードをキャンバスにドラッグ＆ドロップします。<ul>
-<li><code>Cron</code>ノードを選択し、プロパティパネルで実行スケジュールを設定します。「Interval」を「Every day at」にし、任意の時刻（例: <code>09:00</code>）を設定します。</li>
-</ul>
-</li>
-<li><strong>Slackノードの追加:</strong> <code>Cron</code>ノードの右側にある<code>+</code>ボタンをクリックするか、ノードパネルから「Slack」ノードを検索してキャンバスに追加します。<ul>
-<li><code>Slack</code>ノードを選択し、プロパティパネルで以下の設定を行います。<ul>
-<li><strong>Credential:</strong> 「New」をクリックしてSlack APIトークン（Bot User OAuth Token）を設定します。スコープは<code>chat:write</code>が必要です。</li>
-<li><strong>Operation:</strong> 「Post Message」を選択します。</li>
-<li><strong>Channel:</strong> メッセージを投稿したいチャンネル名（例: <code>general</code>）を入力します。</li>
-<li><strong>Text:</strong> 投稿したいメッセージ（例: <code>皆さん、おはようございます！今日も一日頑張りましょう！</code>）を入力します。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>ノードの接続:</strong> <code>Cron</code>ノードの右端にある出力ハンドルを、<code>Slack</code>ノードの左端にある入力ハンドルにドラッグして接続します。これにより、Cronトリガーが発火した際にSlackノードが実行されるようになります。</li>
-<li><strong>ワークフローの保存と有効化:</strong> ワークフロー名を付けて（例: <code>Daily Slack Message</code>）保存し、右上のトグルボタンをオンにしてワークフローを「Active」にします。</li>
-</ol>
-<p>これで、設定した時刻に自動的にSlackにメッセージが投稿されるようになります。</p>
-<h3 id="4-n8naiopenai">4. n8nとAI連携：OpenAIノードで高度なコンテンツ生成</h3>
-<p>2026年のn8nは、AI連携機能が大幅に強化されています。特にOpenAIノードは、GPTモデルをワークフローに組み込むための中心的な存在です。ここでは、Google Sheetからトピックを読み込み、OpenAIでブログ記事のアイデアを生成し、再度Google Sheetに書き込むワークフローを考えます。</p>
-<ol>
-<li><strong>Google Sheetノード (Read):</strong> トリガーは手動実行（Manual Trigger）とし、最初のノードとして「Google Sheet」ノードを追加します。<ul>
-<li><strong>Credential:</strong> Googleアカウントを認証し、対象のスプレッドシートを選択します。</li>
-<li><strong>Operation:</strong> 「Get Many」を選択し、読み込みたいシート名と範囲（例: <code>A:A</code>）を設定します。ヘッダー行がある場合は「Return Headers」を有効にします。ここでは「トピック」列からブログ記事のテーマを取得します。</li>
-</ul>
-</li>
-<li><strong>Setノード:</strong> <code>Google Sheet</code>ノードの出力を整形するために「Set」ノードを追加します。出力された各行から「トピック」の値を抽出し、OpenAIノードが扱いやすい形式（例: `items: { topic: </li>
-</ol>
-<h2 id="_3">おすすめサービス・ツール</h2>
+            <div class="article-body"><p>{{ $json.prompt }}</p>
+<h2 id="_1">おすすめサービス・ツール</h2>
 <p>この記事で紹介した内容を実践するために、以下のサービスがおすすめです。</p>
 <ul>
 <li><strong><a href="https://www.amazon.co.jp?tag=musclelove07-22">Amazon</a></strong> - Amazonで自動化関連書籍を探す</li>
@@ -848,10 +742,10 @@
             
 
             <div class="share-buttons">
-                <a class="share-btn share-btn-twitter" href="https://twitter.com/intent/tweet?url=https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-complete-guide-ai-2026.html&text=2026年版！n8n使い方 完全ガイド【AI連携も】" target="_blank" rel="noopener noreferrer">X でシェア</a>
-                <a class="share-btn share-btn-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-complete-guide-ai-2026.html" target="_blank" rel="noopener noreferrer">Facebook</a>
-                <a class="share-btn share-btn-hatena" href="https://b.hatena.ne.jp/add?mode=confirm&url=https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-complete-guide-ai-2026.html&title=2026年版！n8n使い方 完全ガイド【AI連携も】" target="_blank" rel="noopener noreferrer">はてブ</a>
-                <a class="share-btn share-btn-line" href="https://social-plugins.line.me/lineit/share?url=https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-complete-guide-ai-2026.html" target="_blank" rel="noopener noreferrer">LINE</a>
+                <a class="share-btn share-btn-twitter" href="https://twitter.com/intent/tweet?url=https://musclelove-777.github.io/n8n-master/articles/jsonprompt.html&text={{ $json.prompt }}" target="_blank" rel="noopener noreferrer">X でシェア</a>
+                <a class="share-btn share-btn-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://musclelove-777.github.io/n8n-master/articles/jsonprompt.html" target="_blank" rel="noopener noreferrer">Facebook</a>
+                <a class="share-btn share-btn-hatena" href="https://b.hatena.ne.jp/add?mode=confirm&url=https://musclelove-777.github.io/n8n-master/articles/jsonprompt.html&title={{ $json.prompt }}" target="_blank" rel="noopener noreferrer">はてブ</a>
+                <a class="share-btn share-btn-line" href="https://social-plugins.line.me/lineit/share?url=https://musclelove-777.github.io/n8n-master/articles/jsonprompt.html" target="_blank" rel="noopener noreferrer">LINE</a>
             </div>
         </article>
 
