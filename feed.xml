@@ -2,170 +2,42 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>n8n AI自動化マスター</title>
-    <link>https://musclelove-777.github.io/n8n-master</link>
+    <link>https://musclelove-777.github.io/n8n-master/</link>
     <description>オープンソースAI自動化ツールn8nの使い方・ワークフロー構築・AIエージェント連携を毎日更新。GitHub15万スターの自動化プラットフォームを完全解説。</description>
     <language>ja</language>
-    <lastBuildDate>Wed, 22 Apr 2026 05:27:07 +0900</lastBuildDate>
-    <atom:link href="https://musclelove-777.github.io/n8n-master/feed.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>Sat, 25 Apr 2026 00:35:17 +0900</lastBuildDate>
+    <atom:link href="https://musclelove-777.github.io/n8n-master//feed.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>n8n 使い方 2026年最新版！AI連携で自動化マスターへ</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-ai-automation-master-2026.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-ai-automation-master-2026.html</guid>
+      <link>https://musclelove-777.github.io/n8n-master//articles/n8n-tsukaikata-ai-automation-master-2026.html</link>
+      <guid>https://musclelove-777.github.io/n8n-master//articles/n8n-tsukaikata-ai-automation-master-2026.html</guid>
       <description></description>
       <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
+      <pubDate>Sat, 25 Apr 2026 00:00:00 +0900</pubDate>
     </item>
     <item>
       <title>n8n 使い方 2026年版: AI連携で業務を自動化する究極ガイド</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-ai-2026-guide.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-ai-2026-guide.html</guid>
+      <link>https://musclelove-777.github.io/n8n-master//articles/n8n-tsukaikata-ai-2026-guide.html</link>
+      <guid>https://musclelove-777.github.io/n8n-master//articles/n8n-tsukaikata-ai-2026-guide.html</guid>
       <description></description>
       <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
+      <pubDate>Sat, 25 Apr 2026 00:00:00 +0900</pubDate>
     </item>
     <item>
       <title>2026年最新！n8n使い方徹底ガイドとAI連携実践術</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-renkei.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-renkei.html</guid>
+      <link>https://musclelove-777.github.io/n8n-master//articles/n8n-tsukaikata-2026-ai-renkei.html</link>
+      <guid>https://musclelove-777.github.io/n8n-master//articles/n8n-tsukaikata-2026-ai-renkei.html</guid>
       <description></description>
       <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
+      <pubDate>Sat, 25 Apr 2026 00:00:00 +0900</pubDate>
     </item>
     <item>
       <title>2026年最新版 n8n 使い方ガイド！AI自動化マスターへ</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-guide-2026-ai.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-guide-2026-ai.html</guid>
+      <link>https://musclelove-777.github.io/n8n-master//articles/n8n-tsukaikata-guide-2026-ai.html</link>
+      <guid>https://musclelove-777.github.io/n8n-master//articles/n8n-tsukaikata-guide-2026-ai.html</guid>
       <description></description>
       <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>2026年版 n8n使い方完全ガイド！AI連携で自動化マスターへ</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-complete-guide-ai-automation.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-complete-guide-ai-automation.html</guid>
-      <description></description>
-      <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>2026年最新版！n8n使い方徹底ガイド：AI連携で自動化マスターへ</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-automation.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-automation.html</guid>
-      <description></description>
-      <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>2026年版！n8n使い方 完全ガイド【AI連携も】</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-complete-guide-ai-2026.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-complete-guide-ai-2026.html</guid>
-      <description></description>
-      <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>n8nの使い方 2026年版｜初心者向けにAI連携まで徹底解説！</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-how-to-use-2026-ai-automation.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-how-to-use-2026-ai-automation.html</guid>
-      <description></description>
-      <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>【2026年版】n8n 使い方 完全ガイド！AI連携で自動化マスター</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-complete-guide-ai-automation-2026.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-complete-guide-ai-automation-2026.html</guid>
-      <description></description>
-      <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>n8n 使い方 2026年版：AI自動化を極める完全ガイド</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-jidoka-guide.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-jidoka-guide.html</guid>
-      <description></description>
-      <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>【2026年版】n8n 使い方徹底解説！AI自動化をマスターする第一歩</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-automation-master.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-automation-master.html</guid>
-      <description></description>
-      <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>2026年版 n8n使い方完全ガイド！初心者から始めるAI自動化</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-guide-2026-ai-automation.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-guide-2026-ai-automation.html</guid>
-      <description></description>
-      <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>n8n 使い方 2026年版：AI自動化を極める完全ガイド</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-guide.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-guide.html</guid>
-      <description></description>
-      <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>n8n 使い方 2026年版：AI連携で自動化マスターへ</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-renkei-jido-ka-master.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-renkei-jido-ka-master.html</guid>
-      <description></description>
-      <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>あなたはプロの要約担当者です。以下の文章を重要なポイントを網羅しつつ、200字以内で要約してください。また、その文章の主なカテゴリを一つだけ（例：テクノロジー、ビジネス、ライフスタイル、ニュースなど）提示してください。</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/200.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/200.html</guid>
-      <description></description>
-      <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>【2026年最新】n8n 使い方完全ガイド！初心者もAI自動化</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-complete-guide-ai-automation-2026.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-complete-guide-ai-automation-2026.html</guid>
-      <description></description>
-      <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>2026年最新版 n8n 使い方徹底解説！AI連携で自動化マスターへ</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-master.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-master.html</guid>
-      <description></description>
-      <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>n8n 使い方 2026年最新版: AI連携でワークフローを自動化！</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-workflow-automation.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-workflow-automation.html</guid>
-      <description></description>
-      <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>2026年最新版！n8n使い方徹底ガイド - AI自動化で業務効率爆上げ</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-jido-ka.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-jido-ka.html</guid>
-      <description></description>
-      <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
-    </item>
-    <item>
-      <title>n8n 使い方 2026年版｜初心者から始めるAI自動化マスターガイド</title>
-      <link>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-automation-master-guide.html</link>
-      <guid>https://musclelove-777.github.io/n8n-master/articles/n8n-tsukaikata-2026-ai-automation-master-guide.html</guid>
-      <description></description>
-      <category>n8n 使い方</category>
-      <pubDate>Wed, 22 Apr 2026 00:00:00 +0900</pubDate>
+      <pubDate>Sat, 25 Apr 2026 00:00:00 +0900</pubDate>
     </item>
   </channel>
 </rss>
