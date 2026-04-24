@@ -2,16 +2,20 @@ name: n8n AI自動化マスター 自動記事生成
 
 on:
   schedule:
-    # 毎日 JST 12:00 (UTC 3:00)
     - cron: '0 3 * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
   pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  generate-and-deploy:
+  generate:
     runs-on: ubuntu-latest
     steps:
       - name: リポジトリをチェックアウト
@@ -45,9 +49,18 @@ jobs:
           git diff --staged --quiet || git commit -m "記事自動生成: $(date '+%Y-%m-%d %H:%M')"
           git push
 
-      - name: GitHub Pages にデプロイ
-        uses: peaceiris/actions-gh-pages@v3
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./output/site
-          publish_branch: gh-pages
+          path: ./output/site
+
+  deploy:
+    needs: generate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
