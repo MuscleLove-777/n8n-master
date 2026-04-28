@@ -1,0 +1,40 @@
+{
+  "title": "n8n × Self-Hosted で構築する社内自動化基盤2026",
+  "content": "# n8n × Self-Hosted で構築する社内自動化基盤2026\n\n## この記事でわかること\n- n8n を Self-Hosted で構築する際のアーキテクチャ選定基準\n- セキュリティ・ユーザー管理・バックアップを含む本番運用設計\n- 中級者が SaaS 版から Self-Hosted に移行する際の判断ポイント\n\n## 結論\n2026年Q2時点で n8n の Self-Hosted は「社内データを外に出さない自動化基盤」を比較的低コストで構築できる現実解です。中級開発者が Docker + PostgreSQL + リバースプロキシの最小構成で運用に乗せられる一方、ユーザー管理・バックアップ・アップデート運用を雑に扱うと事故が必ず起きるので、本記事のチェックリストを満たしてから業務クリティカルな自動化に投入してください。Sustainable Use License の制約も踏まえ、商用配布や SaaS 提供を考える場合は Enterprise エディションの検討が必要です。\n\n## 本題\n\n### Self-Hosted の典型アーキテクチャ\n中級者が現実的に組む構成は次のレイヤです。\n\n- **コンテナ層**: n8n 公式 Docker イメージ\n- **DB**: PostgreSQL（SQLite はテスト用）\n- **キュー実行**: Redis + worker コンテナ（中規模以上）\n- **リバースプロキシ**: Caddy / Traefik / nginx\n- **TLS**: Let's Encrypt 自動更新\n- **ストレージ**: バイナリデータ用に S3 互換ストレージ\n\n小規模なら docker compose 一式で十分、規模が大きくなったら Kubernetes に載せ替える流れがベタです。\n\n### 最小構成の docker-compose 例\n本番想定の最小例（執筆時点の標準的な構成）。\n\n```yaml\nservices:\n  postgres:\n    image: postgres:16-alpine\n    environment:\n      POSTGRES_DB: n8n\n      POSTGRES_USER: n8n\n      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}\n    volumes:\n      - pg_data:/var/lib/postgresql/data\n  n8n:\n    image: docker.n8n.io/n8nio/n8n:latest\n    environment:\n      DB_TYPE: postgresdb\n      DB_POSTGRESDB_HOST: postgres\n      DB_POSTGRESDB_DATABASE: n8n\n      DB_POSTGRESDB_USER: n8n\n      DB_POSTGRESDB_PASSWORD: ${POSTGRES_PASSWORD}\n      N8N_HOST: ${N8N_HOST}\n      N8N_PROTOCOL: https\n      WEBHOOK_URL: https://${N8N_HOST}/\n      N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY}\n    depends_on: [postgres]\nvolumes:\n  pg_data: {}\n```\n\n`N8N_ENCRYPTION_KEY` は credentials の暗号化に使われるキーで、後から変更すると全 credentials が読めなくなります。最初に決めて鍵管理ツール（Vault / 1Password 等）で厳重に保管してください。\n\n### セキュリティの肝\n中級者が見落としがちなセキュリティ項目:\n\n- **公開範囲**: 社内VPN 配下に置く / Cloudflare Access 等の前段認証を入れる\n- **ユーザー管理**: Email + パスワードだけでなく SSO（SAML / OIDC）を有効化\n- **MFA**: 管理者アカウントは必ず MFA 必須化\n- **Webhook 認証**: 外部公開 Webhook は HMAC 署名検証を別ノードで挟む\n- **secrets**: 環境変数経由で渡す。ワークフロー内に直書きしない\n\n特に Webhook は「公開URL=誰でも叩ける」状態になりがちなので、認証を入れる/IP制限する/トークンを必須化するの3点を最低限実装してください。\n\n### バックアップ戦略\nn8n のデータは大きく3種類: PostgreSQL、暗号化された credentials、ワークフロー JSON。バックアップ対象とリストアテストは次のように設計します。\n\n1. **DB**: pg_dump を日次で取得、世代管理（最低14日）\n2. **暗号化キー**: 上記とは別の保管場所に冗長保存（無くしたら credentials 全滅）\n3. **ワークフロー**: 別途 JSON エクスポートを Git リポジトリにバージョン管理\n4. **リストア訓練**: 四半期に1回、別環境で実際に復元できることを確認\n\n特に4は地味ですが、バックアップを取っているだけで「リストアできるか」を試していない運用は本番事故時に詰みます。\n\n### バージョンアップ運用\nn8n はリリース頻度が高いプロダクトです。中級者の運用パターン:\n\n- **タグ固定**: `latest` ではなく `n8n:1.x.y` のように固定し、計画的に更新\n- **ステージング環境**: 同じ docker-compose をステージング用に複製、新バージョンを先行検証\n- **メジャー更新時の breaking changes 確認**: リリースノートに必ず目を通す\n- **DB マイグレーション**: 自動だが、初回は時間がかかる場合あり、メンテ時間を確保\n\n「動いているから触らない」を続けると、半年後に5メジャー飛ばした更新で詰むので、月1ペースで更新する運用が結局安全です。\n\n### SaaS 版から Self-Hosted への移行判断\n中級者が SaaS 版を使っていて Self-Hosted を検討する典型的な理由:\n\n- 機密データを外に出せない要件が出てきた\n- ユーザー数増加で SaaS の月額が積み上がった\n- カスタムノードや特殊な統合が必要になった\n- ネットワーク的に分離された環境（オンプレ / プライベートクラウド）からの実行\n\n逆に Self-Hosted のままで困るのは「アップタイム責任を自分で持つ」「DB スケールを自分で見る」「セキュリティパッチ追従」の3点。社内に運用工数を出せるなら Self-Hosted、出せないなら SaaS のままが現実解です。\n\n## よくある質問（FAQ）\n\n### Q1: 個人利用でも Self-Hosted する意味はありますか？\nA1: あります。データを外に出したくない用途や、SaaS のクレジット消費を気にせず大量に動かしたい用途では Self-Hosted の方が快適です。ただし運用工数（バックアップ・更新）を自分で背負う前提で、その時間に見合うかは個人事情次第です。\n\n### Q2: Self-Hosted のライセンス上の注意点は何ですか？\nA2: n8n は執筆時点で Sustainable Use License を採用しており、内部用途・自社向け業務利用は無償で可能ですが、第三者向けに n8n をホスティング提供（SaaS 化）するような用途は Enterprise ライセンスが必要になります。商用配布を考えるなら必ず最新ライセンス文書を原本確認してください。\n\n### Q3: Workers を分離するべき規模感はどれくらいですか？\nA3: 体感では「1日数千実行」を超えるあたりからキュー方式 + Worker 分離が必要になります。それ未満ならメインコンテナ単体で十分回ります。CPU/メモリの張り付き具合と実行待ち時間を観察して判断してください。\n\n## まとめ\nn8n Self-Hosted は中級開発者にとって、社内自動化基盤を低コストで構築できる強力な選択肢です。docker-compose の最小構成から始めつつ、セキュリティ（前段認証・MFA・Webhook 認証）、バックアップ（DB・暗号化キー・ワークフローJSON）、バージョンアップ運用（タグ固定・ステージング検証）の3点を最初から仕組み化しておくと、本番運用に乗せた後も事故を最小化できます。執筆時点ではライセンス条項やリリースペースが活発に動く領域なので、ライセンスとリリースノートは四半期ごとの確認を運用に組み込んでおくのが安全です。\n",
+  "meta_description": "n8n の Self-Hosted 構築を中級者向けに解説。docker-compose 最小構成、セキュリティ・バックアップ・バージョンアップ運用、Sustainable Use License の注意点まで本番運用観点で網羅します。",
+  "tags": [
+    "n8n",
+    "Self-Hosted",
+    "ワークフロー自動化",
+    "Docker",
+    "業務自動化"
+  ],
+  "slug": "2026-04-29-n8n-self-hosted-internal-automation-platform",
+  "faq": [
+    {
+      "question": "Q1: 個人利用でも Self-Hosted する意味はありますか？",
+      "answer": "あります。データを外に出したくない用途や、SaaS のクレジット消費を気にせず大量に動かしたい用途では Self-Hosted の方が快適です。ただし運用工数（バックアップ・更新）を自分で背負う前提で、その時間に見合うかは個人事情次第です。"
+    },
+    {
+      "question": "Q2: Self-Hosted のライセンス上の注意点は何ですか？",
+      "answer": "n8n は執筆時点で Sustainable Use License を採用しており、内部用途・自社向け業務利用は無償で可能ですが、第三者向けに n8n をホスティング提供（SaaS 化）するような用途は Enterprise ライセンスが必要になります。商用配布を考えるなら必ず最新ライセンス文書を原本確認してください。"
+    },
+    {
+      "question": "Q3: Workers を分離するべき規模感はどれくらいですか？",
+      "answer": "体感では「1日数千実行」を超えるあたりからキュー方式 + Worker 分離が必要になります。それ未満ならメインコンテナ単体で十分回ります。CPU/メモリの張り付き具合と実行待ち時間を観察して判断してください。"
+    }
+  ],
+  "hero_emoji": "📝",
+  "hero_gradient": "135deg",
+  "keyword": "n8n",
+  "category": "n8n 運用",
+  "generated_at": "2026-04-29T08:53:42.904042",
+  "seo_score": 85,
+  "jsonld": [
+    "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BlogPosting\",\n  \"headline\": \"n8n × Self-Hosted で構築する社内自動化基盤2026\",\n  \"description\": \"n8n の Self-Hosted 構築を中級者向けに解説。docker-compose 最小構成、セキュリティ・バックアップ・バージョンアップ運用、Sustainable Use License の注意点まで本番運用観点で網羅します。\",\n  \"url\": \"https://musclelove-777.github.io/n8n-master/articles/2026-04-29-n8n-self-hosted-internal-automation-platform.html\",\n  \"datePublished\": \"2026-04-29T08:53:42.904042\",\n  \"dateModified\": \"2026-04-29T08:53:42.904042\",\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"wave40b-ai-articles-3\"\n  },\n  \"keywords\": \"n8n, Self-Hosted, ワークフロー自動化, Docker, 業務自動化\",\n  \"articleSection\": \"n8n 運用\",\n  \"inLanguage\": \"ja\"\n}\n</script>",
+    "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"FAQPage\",\n  \"mainEntity\": [\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Q1: 個人利用でも Self-Hosted する意味はありますか？\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"あります。データを外に出したくない用途や、SaaS のクレジット消費を気にせず大量に動かしたい用途では Self-Hosted の方が快適です。ただし運用工数（バックアップ・更新）を自分で背負う前提で、その時間に見合うかは個人事情次第です。\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Q2: Self-Hosted のライセンス上の注意点は何ですか？\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"n8n は執筆時点で Sustainable Use License を採用しており、内部用途・自社向け業務利用は無償で可能ですが、第三者向けに n8n をホスティング提供（SaaS 化）するような用途は Enterprise ライセンスが必要になります。商用配布を考えるなら必ず最新ライセンス文書を原本確認してください。\"\n      }\n    },\n    {\n      \"@type\": \"Question\",\n      \"name\": \"Q3: Workers を分離するべき規模感はどれくらいですか？\",\n      \"acceptedAnswer\": {\n        \"@type\": \"Answer\",\n        \"text\": \"体感では「1日数千実行」を超えるあたりからキュー方式 + Worker 分離が必要になります。それ未満ならメインコンテナ単体で十分回ります。CPU/メモリの張り付き具合と実行待ち時間を観察して判断してください。\"\n      }\n    }\n  ]\n}\n</script>",
+    "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BreadcrumbList\",\n  \"itemListElement\": [\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 1,\n      \"name\": \"ホーム\",\n      \"item\": \"https://musclelove-777.github.io/n8n-master\"\n    },\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 2,\n      \"name\": \"n8n 運用\",\n      \"item\": \"https://musclelove-777.github.io/n8n-master/category/n8n 運用\"\n    },\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 3,\n      \"name\": \"n8n × Self-Hosted で構築する社内自動化基盤2026\"\n    }\n  ]\n}\n</script>"
+  ],
+  "has_affiliate": false,
+  "affiliate_count": 0
+}
