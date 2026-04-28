@@ -31,13 +31,8 @@ def run(config, prompts=None):
     # ステップ1: キーワード選定
     logger.info("ステップ1: キーワード選定")
     try:
-        from google import genai
-
-        if not config.GEMINI_API_KEY:
-            logger.error("GEMINI_API_KEY が設定されていません")
-            sys.exit(1)
-
-        client = genai.Client(api_key=config.GEMINI_API_KEY)
+        from llm import get_llm_client
+        client = get_llm_client(config)
 
         if prompts and hasattr(prompts, "build_keyword_prompt"):
             prompt = prompts.build_keyword_prompt(config)
@@ -52,10 +47,13 @@ def run(config, prompts=None):
                 '{"category": "カテゴリ名", "keyword": "キーワード"}'
             )
 
-        from google.genai import types
-        keyword_config = types.GenerateContentConfig(
+        try:
+            from google.genai import types
+            keyword_config = types.GenerateContentConfig(
             response_mime_type="application/json",
         )
+        except ImportError:
+            keyword_config = None  # Claude shim 経由など google-genai 不在時
 
         max_keyword_retries = 5
         data = None

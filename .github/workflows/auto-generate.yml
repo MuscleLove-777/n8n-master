@@ -1,8 +1,6 @@
 name: n8n AI自動化マスター 自動記事生成
 
 on:
-  schedule:
-    - cron: '0 3 * * *'
   workflow_dispatch:
 
 permissions:

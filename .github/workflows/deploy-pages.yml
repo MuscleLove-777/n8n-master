@@ -1,0 +1,64 @@
+name: Deploy Pages
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'output/articles/**'
+      - 'output/site/**'
+      - 'templates/**'
+      - 'config.py'
+      - 'prompts.py'
+      - 'site_generator.py'
+      - 'requirements.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: MuscleLove-777/blog-engine
+          path: blog_engine
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deps
+        run: |
+          pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f blog_engine/requirements.txt ]; then pip install -r blog_engine/requirements.txt; fi
+      - name: Rebuild site from existing articles
+        run: |
+          python - <<'PY'
+          import sys, importlib
+          sys.path.insert(0, '.')
+          import config, prompts
+          try:
+              from site_generator import SiteGenerator
+          except ImportError:
+              from blog_engine.site_generator import SiteGenerator
+          SiteGenerator(config).build_site()
+          print("site rebuilt")
+          PY
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./output/site
+      - id: deployment
+        uses: actions/deploy-pages@v4
