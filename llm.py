@@ -17,9 +17,22 @@ from types import SimpleNamespace
 logger = logging.getLogger(__name__)
 
 
-def _claude_cli_generate(prompt: str, model: str | None = None, timeout: int = 600) -> str:
+def _strip_code_fence(text: str) -> str:
+    """Claude が返す ```json ... ``` 形式のコードフェンスを剥がす。"""
+    t = text.strip()
+    if t.startswith("```"):
+        nl = t.find("\n")
+        if nl != -1:
+            t = t[nl + 1:]
+        if t.rstrip().endswith("```"):
+            t = t.rstrip()[:-3].rstrip()
+    return t
+
+
+def _claude_cli_generate(prompt: str, model: str | None = None, timeout: int = 900) -> str:
     """`claude --print` を subprocess で呼んで生成テキストを返す。"""
-    claude_model = os.environ.get("CLAUDE_MODEL", model or "claude-haiku-4-5-20251001")
+    # 長文記事生成には sonnet 推奨（haiku は max_output で truncate しやすい）
+    claude_model = os.environ.get("CLAUDE_MODEL", model or "claude-sonnet-4-6")
     cmd = [
         os.environ.get("CLAUDE_BIN", "claude"),
         "--print",
@@ -45,7 +58,7 @@ def _claude_cli_generate(prompt: str, model: str | None = None, timeout: int = 6
         raise RuntimeError(f"Claude CLI 出力 JSON パース失敗: {e}\n生出力: {proc.stdout[:500]}") from e
     if data.get("is_error"):
         raise RuntimeError(f"Claude CLI is_error=true: {data.get('result', '')[:500]}")
-    return data.get("result", "")
+    return _strip_code_fence(data.get("result", ""))
 
 
 class _ClaudeModels:

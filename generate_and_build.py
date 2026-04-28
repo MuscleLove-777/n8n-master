@@ -48,10 +48,13 @@ def run(config, prompts=None):
             )
 
         try:
-            from google.genai import types
-            keyword_config = types.GenerateContentConfig(
+            try:
+                from google.genai import types
+                keyword_config = types.GenerateContentConfig(
             response_mime_type="application/json",
         )
+            except ImportError:
+                keyword_config = None  # Claude shim 経由など google-genai 不在時
         except ImportError:
             keyword_config = None  # Claude shim 経由など google-genai 不在時
 
