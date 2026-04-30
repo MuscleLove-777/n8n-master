@@ -48,7 +48,11 @@ jobs:
           python - <<'PY'
           import sys, importlib
           sys.path.insert(0, '.')
-          import config, prompts
+          import config
+          try:
+              import prompts
+          except ImportError:
+              pass
           try:
               from site_generator import SiteGenerator
           except ImportError:
