@@ -28,84 +28,22 @@ def run(config, prompts=None):
     logger.info("=== %s 自動生成開始 ===", config.BLOG_NAME)
     start_time = datetime.now()
 
-    # ステップ1: キーワード選定
-    logger.info("ステップ1: キーワード選定")
+    # ステップ1: キーワード選定（topic_collector経由で topics.json から）
+    # 旧実装は Gemini に毎日「カテゴリ＋キーワード選んで」と頼んでたが、
+    # Gemini がプロンプト例の例キーワードをオウム返しして同一記事量産が発生。
+    # topic_collector.get_next_topic() で topics.json の優先度順に確実に順送りする。
+    logger.info("ステップ1: キーワード選定（topics.json）")
+    tc = None
     try:
-        from llm import get_llm_client
-        client = get_llm_client(config)
-
-        if prompts and hasattr(prompts, "build_keyword_prompt"):
-            prompt = prompts.build_keyword_prompt(config)
-        else:
-            categories_text = "\n".join(f"- {cat}" for cat in config.TARGET_CATEGORIES)
-            prompt = (
-                f"{config.BLOG_NAME}用のキーワードを選定してください。\n\n"
-                "以下のカテゴリから1つ選び、そのカテゴリで今注目されている"
-                "トピック・キーワードを1つ提案してください。\n\n"
-                f"カテゴリ一覧:\n{categories_text}\n\n"
-                "以下の形式でJSON形式のみで回答してください（説明不要）:\n"
-                '{"category": "カテゴリ名", "keyword": "キーワード"}'
-            )
-
-        try:
-            try:
-                from google.genai import types
-                keyword_config = types.GenerateContentConfig(
-            response_mime_type="application/json",
-        )
-            except ImportError:
-                keyword_config = None  # Claude shim 経由など google-genai 不在時
-        except ImportError:
-            keyword_config = None  # Claude shim 経由など google-genai 不在時
-
-        max_keyword_retries = 5
-        data = None
-        decoder = json.JSONDecoder()
-        for attempt in range(1, max_keyword_retries + 1):
-            try:
-                response = client.models.generate_content(
-                    model=config.GEMINI_MODEL, contents=prompt, config=keyword_config
-                )
-                response_text = response.text.strip()
-                logger.info("Gemini応答（試行%d）: %s", attempt, response_text[:200])
-
-                if "```" in response_text:
-                    response_text = response_text.split("```")[1]
-                    if response_text.startswith("json"):
-                        response_text = response_text[4:]
-                    response_text = response_text.strip()
-
-                # raw_decodeで最初のJSONオブジェクトだけを安全にパース
-                # （Extra data / 複数JSONオブジェクト返却対策）
-                start = response_text.find("{")
-                if start < 0:
-                    start = response_text.find("[")
-                if start >= 0:
-                    data, _ = decoder.raw_decode(response_text, start)
-                else:
-                    data = json.loads(response_text)
-
-                # Geminiがリストで返す場合があるので先頭要素を取得
-                if isinstance(data, list):
-                    data = data[0]
-                break
-            except (json.JSONDecodeError, Exception) as parse_err:
-                logger.warning(
-                    "キーワード選定JSONパース失敗（試行%d/%d）: %s",
-                    attempt, max_keyword_retries, parse_err,
-                )
-                if attempt < max_keyword_retries:
-                    time.sleep(2 * attempt)
-
-        # デフォルト値でフォールバック（全リトライ失敗時も安全に続行）
-        import random
-        if data is None:
-            logger.warning("全リトライ失敗。デフォルトキーワードで続行します")
-            data = {}
-        category = data.get("category", random.choice(config.TARGET_CATEGORIES))
-        keyword = data.get("keyword", category)
+        from topic_collector import TopicCollector
+        tc = TopicCollector(config)
+        category, keyword = tc.get_next_topic()
+        if not category or not keyword:
+            logger.error("topics.json に未処理(pending)のトピックがありません。topics.json を補充してください。")
+            sys.exit(1)
         logger.info("選定結果 - カテゴリ: %s, キーワード: %s", category, keyword)
-
+    except SystemExit:
+        raise
     except Exception as e:
         logger.error("キーワード選定に失敗: %s", e)
         sys.exit(1)
@@ -167,6 +105,14 @@ def run(config, prompts=None):
     except Exception as e:
         logger.error("サイトビルドに失敗: %s", e)
         sys.exit(1)
+
+    # ステップ4: トピックを done にして topics.json を更新（次回の重複防止）
+    if tc is not None:
+        try:
+            tc.mark_as_done(category, keyword)
+            logger.info("トピックを done に更新: [%s] %s", category, keyword)
+        except Exception as e:
+            logger.warning("topics.json の更新をスキップ: %s", e)
 
     # 完了
     duration = (datetime.now() - start_time).total_seconds()
