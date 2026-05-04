@@ -1,0 +1,26 @@
+{
+  "title": "n8n 始め方｜初心者向けセットアップ完全ガイド【2026年版】",
+  "meta_description": "n8n初心者向けの完全ガイド。クラウド版セットアップからワークフロー構築、AI連携まで5ステップで解説。2026年最新版対応。",
+  "content": "# n8n 始め方｜初心者向けセットアップ完全ガイド【2026年版】\n\n## この記事でわかること\n\n- **n8nのセットアップから第1ワークフロー構築まで、30分で完成できる実践的手順**\n- **クラウド版とセルフホスト版の選択基準と、自分に合った環境構築方法**\n- **OpenAIなどのAI連携を含めた、実務レベルのワークフロー実装テクニック**\n\n---\n\n## 結論\n\nn8n は初心者でも直感的に自動化を実現できるワークフロー自動化ツールです。**クラウド版なら登録から5分、セットアップから第1ワークフロー構築まで30分で完結します**。セルフホスト版も Docker があればすぐ環境構築できます。本記事では、n8n 始め方の基本から応用まで、実装テクニックを交えながら解説します。\n\n---\n\n## n8n とは？ワークフロー自動化の新しいアプローチ\n\nn8n は、**ノーコード・ローコードでビジネスプロセスを自動化するワークフロー自動化プラットフォーム**です。API連携、データ処理、スケジューリング、AI連携まで、プログラミング知識がなくても実現できます。\n\n### n8n の特徴\n\n- **400+ のプリビルドコネクター**：Slack、Google Drive、Salesforce など人気ツールが揃う\n- **完全なコード実行環境**：JavaScript や Python でのカスタムロジック実装可能\n- **セルフホスト対応**：オンプレミスでのデプロイも可能で、エンタープライズニーズに対応\n- **AI エージェント統合**：OpenAI、LangChain との連携で高度な自動化を実現\n- **オープンソース**：GitHub で公開され、カスタマイズの自由度が高い\n\n---\n\n## クラウド版 vs セルフホスト版｜どちらを選ぶ？\n\nn8n の始め方として最初に決めるべきが、クラウド版かセルフホスト版かです。\n\n### クラウド版（n8n Cloud）の特徴\n\n**メリット：**\n- インストール不要。登録したらすぐ使える\n- サーバー管理が不要で運用負荷が低い\n- 自動バックアップとセキュリティ更新\n- 初心者向け。セットアップ時間ゼロ\n\n**デメリット：**\n- 月額料金が発生（無料プランあり、$10〜）\n- オンプレミスニーズには対応不可\n\n**おすすめ：** 初心者、スモールビジネス、小規模自動化\n\n### セルフホスト版（オンプレミス）の特徴\n\n**メリット：**\n- 完全無料（オープンソース）\n- データをすべて自社管理。コンプライアンス対応が容易\n- 無制限のワークフロー数とボット数\n\n**デメリット：**\n- Docker や Kubernetes の知識が必要\n- サーバー管理・セキュリティパッチが自責\n- 初期構築に数時間〜1日必要\n\n**おすすめ：** DevOps エンジニア、大規模利用、データ管理が厳しい業種\n\n**本ガイドではクラウド版でのセットアップを優先します。**\n\n---\n\n## n8n 始め方｜クラウド版セットアップ 5 ステップ\n\n### ステップ 1：アカウント登録（1分）\n\n1. [n8n 公式サイト](https://n8n.io) にアクセス\n2. **「Get started」** をクリック\n3. メールアドレス、パスワード、名前を入力\n4. 「Sign up」をクリック\n5. メール認証リンクをクリック\n\n→ これでアカウント作成完了。自動的にダッシュボードへ遷移します。\n\n### ステップ 2：ワークスペース作成（1分）\n\n1. ダッシュボード左上の「New Workspace」をクリック\n2. ワークスペース名を入力（例：「My Automation」）\n3. 「Create」をクリック\n\nワークスペースは、複数プロジェクトを管理する単位です。チーム利用する場合は、メンバー招待もここから行います。\n\n### ステップ 3：認証情報（Credentials）設定（5分）\n\nn8n で外部ツールと連携するには、API キーやアクセストークンを登録する必要があります。\n\n**例：OpenAI（AI エージェント用）**\n\n1. 左下の **「Credentials」** をクリック\n2. 「New」→ 「OpenAI」 を選択\n3. [OpenAI API キー](https://platform.openai.com/api-keys) を取得・貼り付け\n4. 「Save」をクリック\n\nこの Credentials は、ワークフロー内のノードから呼び出せます。\n\n### ステップ 4：第 1 ワークフロー作成（10分）\n\n**シンプルなワークフロー例：Webhook で入力を受け取り、OpenAI で処理**\n\n1. ダッシュボードの「Workflows」→ 「New Workflow」\n2. キャンバスが表示されます\n\n**ノード追加手順：**\n\n#### ノード 1：トリガー設定（Webhook）\n\n- 左パネルの **「Trigger」** セクションから **「Webhook」** をドラッグ\n- 「HTTP Method」→ POST\n- 「Authentication」→ None（デモ用）\n- 「Save」をクリック\n- Webhook URL が生成される（後で curl や Postman でテスト可能）\n\n#### ノード 2：AI 処理ノード（OpenAI）\n\n- 右の「＋」ボタンをクリック（Webhook ノードの右側）\n- 「Add Node」から **「OpenAI」** を検索・追加\n- 「Credentials」→ 先ほど保存した OpenAI キーを選択\n- 「Model」→ gpt-4-turbo （または gpt-4o）\n- 「Prompt」→ 以下を入力：\n\n\n## おすすめサービス・ツール\n\nこの記事で紹介した内容を実践するために、以下のサービスがおすすめです。\n\n- **[Amazon](https://www.amazon.co.jp?tag=musclelove07-22)** - Amazonで自動化関連書籍を探す\n- **[楽天ブックス](https://www.rakuten.co.jp)** - 楽天で自動化関連書籍を探す\n\n*※ 上記リンクからご利用いただくと、サイト運営の支援になります。*\n",
+  "hero_emoji": "📝",
+  "hero_gradient": "135deg",
+  "image_search_query": "",
+  "tags": [
+    "自動生成",
+    "ブログ",
+    "記事",
+    "SEO",
+    "最新"
+  ],
+  "slug": "n8n-2026",
+  "keyword": "n8n 始め方",
+  "category": "n8n 使い方",
+  "generated_at": "2026-05-04T09:54:26.200980",
+  "seo_score": 77,
+  "jsonld": [
+    "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BlogPosting\",\n  \"headline\": \"n8n 始め方｜初心者向けセットアップ完全ガイド【2026年版】\",\n  \"description\": \"n8n初心者向けの完全ガイド。クラウド版セットアップからワークフロー構築、AI連携まで5ステップで解説。2026年最新版対応。\",\n  \"url\": \"https://musclelove-777.github.io/n8n-master/articles/n8n-2026.html\",\n  \"datePublished\": \"2026-05-04T09:54:26.200980\",\n  \"dateModified\": \"2026-05-04T09:54:26.200980\",\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"n8n AI自動化マスター\",\n    \"url\": \"https://musclelove-777.github.io/n8n-master\"\n  },\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"n8n AI自動化マスター\",\n    \"url\": \"https://musclelove-777.github.io/n8n-master\"\n  },\n  \"mainEntityOfPage\": {\n    \"@type\": \"WebPage\",\n    \"@id\": \"https://musclelove-777.github.io/n8n-master/articles/n8n-2026.html\"\n  },\n  \"keywords\": \"自動生成, ブログ, 記事, SEO, 最新\",\n  \"articleSection\": \"n8n 使い方\",\n  \"inLanguage\": \"ja\"\n}\n</script>",
+    "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BreadcrumbList\",\n  \"itemListElement\": [\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 1,\n      \"name\": \"ホーム\",\n      \"item\": \"https://musclelove-777.github.io/n8n-master\"\n    },\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 2,\n      \"name\": \"n8n 使い方\",\n      \"item\": \"https://musclelove-777.github.io/n8n-master/category/n8n 使い方\"\n    },\n    {\n      \"@type\": \"ListItem\",\n      \"position\": 3,\n      \"name\": \"n8n 始め方｜初心者向けセットアップ完全ガイド【2026年版】\"\n    }\n  ]\n}\n</script>"
+  ],
+  "has_affiliate": true,
+  "affiliate_count": 2
+}
