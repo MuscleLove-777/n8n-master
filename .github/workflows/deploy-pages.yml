@@ -65,6 +65,14 @@ jobs:
           print("site rebuilt")
           PY
       - uses: actions/configure-pages@v5
+      - name: Ensure robots.txt
+        run: |
+          mkdir -p output/site
+          cat > output/site/robots.txt <<'EOF'
+          User-agent: *
+          Allow: /
+          Sitemap: https://musclelove-777.github.io/n8n-master/sitemap.xml
+          EOF
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./output/site
