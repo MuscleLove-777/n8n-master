@@ -86,7 +86,8 @@
     {
       "keyword": "n8n 最新アップデート 2026",
       "priority": "high",
-      "status": "pending"
+      "status": "done",
+      "done_at": "2026-05-20T10:09:43.550652"
     },
     {
       "keyword": "n8n コミュニティ 活用法",
