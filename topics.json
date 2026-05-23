@@ -31,7 +31,8 @@
     {
       "keyword": "n8n Cloud 料金プラン 2026",
       "priority": "high",
-      "status": "pending"
+      "status": "done",
+      "done_at": "2026-05-23T12:33:55.654677"
     },
     {
       "keyword": "n8n 無料 セルフホスト 始め方",
