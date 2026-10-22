@@ -3,6 +3,7 @@ import argparse
 from collections import Counter
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 from bs4 import BeautifulSoup
@@ -29,13 +30,47 @@ def fragment(text):
 def article_page(relative,soup):
     return bool({'articles','posts','post'}.intersection(relative.parts) or soup.find('meta',property='og:type',content='article') or soup.select_one('article.post-single') or any(re.search(r'"@type"\s*:\s*"(?:Article|BlogPosting|NewsArticle)"',s.get_text()) for s in soup.find_all('script',type='application/ld+json')))
 
+def _html_candidates(root):
+    """全候補の境界を変更前に検査し、リンク経由の読み書きを拒否する。"""
+    def checked(path):
+        info=path.lstat()
+        if path.is_symlink() or getattr(info,'st_file_attributes',0) & 0x400:
+            raise ValueError('Linked deployment path is not allowed')
+        if not path.resolve().is_relative_to(root):
+            raise ValueError('Deployment path escapes root')
+        return info
+    checked(root)
+    report=root/'ml-image-report.json'
+    if report.exists() or report.is_symlink():
+        info=checked(report)
+        if not report.is_file() or info.st_nlink!=1:
+            raise ValueError('Invalid deployment report file')
+    candidates=[]
+    def walk(directory):
+        for entry in sorted(os.scandir(directory),key=lambda item:item.name):
+            path=Path(entry.path)
+            if entry.name in SKIP:
+                continue
+            info=checked(path)
+            if path.is_dir():
+                walk(path)
+            elif path.suffix=='.html':
+                if not path.is_file() or info.st_nlink!=1:
+                    raise ValueError('Invalid deployment file')
+                candidates.append(path)
+    walk(root)
+    return candidates
+
+
 def run(root,project):
-    root=Path(root).resolve()
+    root=Path(root).absolute()
+    candidates=_html_candidates(root)
+    root=root.resolve()
     if not (root/'index.html').is_file():
         raise ValueError('No index.html; refusing an empty deployment')
     counts=Counter()
     samples=[]
-    for path in sorted(root.rglob('*.html')):
+    for path in sorted(candidates):
         relative=path.relative_to(root)
         if SKIP.intersection(relative.parts):
             continue
